@@ -1,0 +1,45 @@
+apply plugin:'war'
+def tomcatVersion='7.0.76'
+
+buildscript{
+	repositories{
+		jcenter()
+	}
+	dependencies{
+		claspath 'com.bmushko:gradle-tomcat-plugin:2.3'
+	}
+}
+
+repositories{
+	mavenCentral()
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+tack copyClient(type: Copy) {
+	from 'dist'
+	into '../../Tomcat/rootRecourse'
+}
+
+war.dependsOn=['client:buildClient']
+
+/*tack copyClient(type: Copy, dependsOn:('client:buildClient')) {
+	from 'dist'
+	into '../../Tomcat/rootRecourse'
+}
+
+war.dependsOn=['copyClient']*/
+
+war {
+	from 'client/dist'
+}
+
+jar {
+    baseName = 'jar-gradle'
+}
+
+war {
+    baseName = 'war-gradle'
+}

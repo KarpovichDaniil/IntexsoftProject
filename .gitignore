@@ -1,0 +1,8 @@
+/.gradle/
+/.settings/
+
+/out/
+
+/build/
+
+/logs/

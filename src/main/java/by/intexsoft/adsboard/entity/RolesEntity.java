@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "main_country")
-public class MainCountryEntity extends AbstractEntity{
+public class RolesEntity extends AbstractEntity{
 
 	private static final long serialVersionUID = -2131224364992410235L;
 	
@@ -24,5 +24,5 @@ public class MainCountryEntity extends AbstractEntity{
 	public String branch_office_in_rb;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "main_country", fetch = FetchType.EAGER)
-	public Set<CompanyEntity> company;
+	public Set<CategoriesEntity> company;
 }

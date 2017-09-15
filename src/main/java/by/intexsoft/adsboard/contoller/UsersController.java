@@ -1,5 +1,5 @@
 package main.java.by.intexsoft.adsboard.contoller;
 
-public class ProgLangController {
+public class UsersController {
 
 }

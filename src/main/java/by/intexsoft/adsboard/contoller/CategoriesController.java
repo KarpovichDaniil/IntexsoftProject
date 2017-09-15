@@ -12,24 +12,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import main.java.by.intexsoft.adsboard.entity.CompanyEntity;
-import main.java.by.intexsoft.adsboard.service.CompanyService;
+import main.java.by.intexsoft.adsboard.entity.CategoriesEntity;
+import main.java.by.intexsoft.adsboard.service.CategoriesService;
 import ch.qos.logback.classic.Logger;
 
 @RestController
 @RequestMapping("/company")
-public class CompanyController {
-	private static Logger logger = (Logger) LoggerFactory.getLogger(CompanyController.class.getName());
+public class CategoriesController {
+	private static Logger logger = (Logger) LoggerFactory.getLogger(CategoriesController.class.getName());
 
 	@Autowired
-	CompanyService companyService;
+	CategoriesService companyService;
 
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public ResponseEntity<?> add(@RequestBody CompanyEntity entity) {
+	public ResponseEntity<?> add(@RequestBody CategoriesEntity entity) {
 		logger.info("Creation of a new company with name: " + entity.company_name + " and main country"
 				+ entity.main_country_id);
 		try {
-			return new ResponseEntity<CompanyEntity>(companyService.save(entity), HttpStatus.CREATED);
+			return new ResponseEntity<CategoriesEntity>(companyService.save(entity), HttpStatus.CREATED);
 		} catch (Exception e) {
 			logger.error("Error while saving new company with name: " + entity.company_name + " and main country"
 					+ entity.main_country_id);
@@ -52,7 +52,7 @@ public class CompanyController {
 	@RequestMapping("/all")
 	public ResponseEntity<?> findAll() {
 		logger.info("Getting all company");
-		List<CompanyEntity> resultList = companyService.findAll();
-		return new ResponseEntity<List<CompanyEntity>>(resultList, HttpStatus.OK);
+		List<CategoriesEntity> resultList = companyService.findAll();
+		return new ResponseEntity<List<CategoriesEntity>>(resultList, HttpStatus.OK);
 	}
 }

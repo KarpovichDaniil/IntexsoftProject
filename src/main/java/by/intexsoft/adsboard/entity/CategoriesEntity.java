@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "company")
-public class CompanyEntity extends AbstractEntity{
+public class CategoriesEntity extends AbstractEntity{
 	
 	private static final long serialVersionUID = -2647633542363434741L;
 	
@@ -17,5 +17,5 @@ public class CompanyEntity extends AbstractEntity{
 	
 	@ManyToOne
 	@JoinColumn(name="main_country_id")
-	public MainCountryEntity main_country_id;
+	public RolesEntity main_country_id;
 }

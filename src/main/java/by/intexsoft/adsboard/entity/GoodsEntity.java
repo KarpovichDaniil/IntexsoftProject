@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "programmer")
-public class ProgrammerEntity extends AbstractEntity {
+public class GoodsEntity extends AbstractEntity {
 
 	private static final long serialVersionUID = -5421936681937235163L;
 
@@ -34,13 +34,13 @@ public class ProgrammerEntity extends AbstractEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "company_id")
-	public CompanyEntity company_id;
+	public CategoriesEntity company_id;
 
 	@ManyToOne
 	@JoinColumn(name = "post_id")
-	public PostEntity post_id;
+	public UsersEntity post_id;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "programmer_prog_lang", joinColumns = @JoinColumn(name = "programmer_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "prog_lang_id", referencedColumnName = "id"))
-	public Set<ProgLangEntity> prog_lang;
+	public Set<CitiesEntity> prog_lang;
 }

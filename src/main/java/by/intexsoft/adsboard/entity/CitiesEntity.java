@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "prog_lang")
-public class ProgLangEntity extends AbstractEntity{
+public class CitiesEntity extends AbstractEntity{
 
 	private static final long serialVersionUID = -7512471965538551694L;
 	

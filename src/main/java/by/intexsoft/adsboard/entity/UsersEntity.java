@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "post")
-public class PostEntity extends AbstractEntity {
+public class UsersEntity extends AbstractEntity {
 
 	private static final long serialVersionUID = -5740112979627892785L;
 

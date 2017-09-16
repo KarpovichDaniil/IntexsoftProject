@@ -5,12 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "prog_lang")
+@Table(name = "cities")
 public class CitiesEntity extends AbstractEntity{
 
 	private static final long serialVersionUID = -7512471965538551694L;
 	
-	@Column(name="prog_lang")
-	public String prog_lang;
+	@Column(name="name")
+	public String name;
 
 }

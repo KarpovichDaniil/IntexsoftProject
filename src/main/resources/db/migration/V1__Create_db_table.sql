@@ -49,12 +49,12 @@ CREATE TABLE categories (
 
 
 
-CREATE TABLE user_roles (
-	role_id integer NOT NULL,
+CREATE TABLE users_roles (
 	user_id integer NOT NULL,
-	CONSTRAINT user_roles_pk PRIMARY KEY (role_id, user_id),
-	FOREIGN KEY (role_id) REFERENCES roles(id),
-	FOREIGN KEY (user_id) REFERENCES users(id)
+	role_id integer NOT NULL,
+	CONSTRAINT user_roles_pk PRIMARY KEY (user_id, role_id),
+	FOREIGN KEY (user_id) REFERENCES users(id),
+	FOREIGN KEY (role_id) REFERENCES roles(id)
 );
 
 

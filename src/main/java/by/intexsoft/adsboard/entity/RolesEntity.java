@@ -1,28 +1,25 @@
 package main.java.by.intexsoft.adsboard.entity;
 
-import java.util.Set;
+import java.util.List;
+import static javax.persistence.FetchType.EAGER;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "main_country")
+@Table(name = "roles")
 public class RolesEntity extends AbstractEntity{
 
 	private static final long serialVersionUID = -2131224364992410235L;
 	
-	
-	
-	@Column(name="main_country")
-	public String main_country;
+	@Column(name = "name")
+	public String name;
 
-	@Column(name="branch_office_in_rb")
-	public String branch_office_in_rb;
+	@Column(name = "description")
+	public String description;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "main_country", fetch = FetchType.EAGER)
-	public Set<CategoriesEntity> company;
+	@ManyToMany(fetch = EAGER, mappedBy = "roles")
+    public List<UsersEntity> users;
 }

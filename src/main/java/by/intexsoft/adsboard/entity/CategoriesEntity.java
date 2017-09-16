@@ -1,21 +1,24 @@
 package main.java.by.intexsoft.adsboard.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+
+import static javax.persistence.FetchType.EAGER;
+
+import java.util.List;
+
 import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "company")
+@Table(name = "categories")
 public class CategoriesEntity extends AbstractEntity{
 	
 	private static final long serialVersionUID = -2647633542363434741L;
 	
-	@Column(name="company_name")
-	public String company_name;
+	@Column(name="name")
+	public String name;
 	
-	@ManyToOne
-	@JoinColumn(name="main_country_id")
-	public RolesEntity main_country_id;
+	@ManyToMany(fetch = EAGER, mappedBy = "categories")
+    public List<GoodsEntity> goods;
 }

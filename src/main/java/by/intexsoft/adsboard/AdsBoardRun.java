@@ -10,11 +10,11 @@ public class AdsBoardRun {
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
 				"main.java.by.intexsoft.adsboard.config");
-		CategoriesService categoriesService = context.getBean(CategoriesServiceImpl.class);
+		CategoriesService categoryService = context.getBean(CategoriesServiceImpl.class);
 		CategoriesEntity insert = new CategoriesEntity();
-		insert.name = "Intexsoft";
-		categoriesService.save(insert);
-		categoriesService.findAll().forEach((CategoriesEntity category) -> System.out.println(category.name));
+		insert.name = "Cars";
+		categoryService.save(insert);
+		categoryService.findAll().forEach((CategoriesEntity category) -> System.out.println(category.name));
 		context.close();
 	}
 }

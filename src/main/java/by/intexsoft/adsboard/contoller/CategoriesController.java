@@ -17,33 +17,31 @@ import main.java.by.intexsoft.adsboard.service.CategoriesService;
 import ch.qos.logback.classic.Logger;
 
 @RestController
-@RequestMapping("/company")
+@RequestMapping("/categories")
 public class CategoriesController {
 	private static Logger logger = (Logger) LoggerFactory.getLogger(CategoriesController.class.getName());
 
 	@Autowired
-	CategoriesService companyService;
+	CategoriesService categoryService;
 
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	public ResponseEntity<?> add(@RequestBody CategoriesEntity entity) {
-		logger.info("Creation of a new company with name: " + entity.company_name + " and main country"
-				+ entity.main_country_id);
+		logger.info("Creation of a new category with name: " + entity.name);
 		try {
-			return new ResponseEntity<CategoriesEntity>(companyService.save(entity), HttpStatus.CREATED);
+			return new ResponseEntity<CategoriesEntity>(categoryService.save(entity), HttpStatus.CREATED);
 		} catch (Exception e) {
-			logger.error("Error while saving new company with name: " + entity.company_name + " and main country"
-					+ entity.main_country_id);
+			logger.error("Error while saving new company with name: " + entity.name);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	@RequestMapping("/del/{id}")
 	public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
-		logger.info("Delete company with id= " + id);
+		logger.info("Delete category with id= " + id);
 		try {
-			companyService.deleteById(id);
+			categoryService.deleteById(id);
 		} catch (Exception e) {
-			logger.error("Company with id= " + id + " is not exist");
+			logger.error("Category with id= " + id + " is not exist");
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(HttpStatus.CREATED);
@@ -51,8 +49,8 @@ public class CategoriesController {
 
 	@RequestMapping("/all")
 	public ResponseEntity<?> findAll() {
-		logger.info("Getting all company");
-		List<CategoriesEntity> resultList = companyService.findAll();
+		logger.info("Getting all categories");
+		List<CategoriesEntity> resultList = categoryService.findAll();
 		return new ResponseEntity<List<CategoriesEntity>>(resultList, HttpStatus.OK);
 	}
 }

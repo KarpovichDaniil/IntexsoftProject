@@ -26,7 +26,7 @@ public class UsersEntity extends AbstractEntity {
 	@Column(name = "email")
 	public String email;
 	
-	@Column(name = "post_name")
+	@Column(name = "enabled")
 	public Boolean enabled;
 
 	@ManyToMany(fetch = EAGER)

@@ -2,18 +2,14 @@ package main.java.by.intexsoft.adsboard.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import static javax.persistence.FetchType.EAGER;
 
 @Entity
 @Table(name = "goods")
@@ -42,11 +38,7 @@ public class GoodsEntity extends AbstractEntity {
 	@Temporal(TemporalType.DATE)
 	public Date created_date;
 	
-	@ManyToMany(fetch = EAGER)
-	@JoinTable(
-			name = "goods_categories",
-			joinColumns = @JoinColumn(name = "goods_id", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id")
-	)
-	public List<CategoriesEntity> categories;
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	public CategoriesEntity category_id;
 }

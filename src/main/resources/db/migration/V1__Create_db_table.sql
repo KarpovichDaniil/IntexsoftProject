@@ -34,9 +34,11 @@ CREATE TABLE goods (
 	city_id integer NOT NULL,
 	user_id integer NOT NULL,
 	created_date TIMESTAMP NOT NULL,
+	category_id integer NOT NULL,
 	CONSTRAINT goods_pk PRIMARY KEY (id),
 	FOREIGN KEY (city_id) REFERENCES cities(id),
-	FOREIGN KEY (user_id) REFERENCES users(id)
+	FOREIGN KEY (user_id) REFERENCES users(id),
+	FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
 
@@ -55,15 +57,5 @@ CREATE TABLE users_roles (
 	CONSTRAINT user_roles_pk PRIMARY KEY (user_id, role_id),
 	FOREIGN KEY (user_id) REFERENCES users(id),
 	FOREIGN KEY (role_id) REFERENCES roles(id)
-);
-
-
-
-CREATE TABLE goods_categories (
-	goods_id integer NOT NULL,
-	category_id integer NOT NULL,
-	CONSTRAINT goods_categories_pk PRIMARY KEY (goods_id, category_id),
-	FOREIGN KEY (goods_id) REFERENCES goods(id),
-	FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 

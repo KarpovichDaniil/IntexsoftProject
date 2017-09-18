@@ -1,6 +1,5 @@
-package main.java.by.intexsoft.adsboard.entity;
+package main.java.by.intexsoft.adsboard.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,7 +12,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "goods")
-public class GoodsEntity extends AbstractEntity {
+public class Goods extends AbstractEntity {
 
 	private static final long serialVersionUID = -5421936681937235163L;
 
@@ -25,14 +24,14 @@ public class GoodsEntity extends AbstractEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "city_id")
-	public CitiesEntity city_id;
+	public Cities city;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	public UsersEntity user_id;
+	public Users user;
 
 	@Column(name = "price")
-	public BigDecimal price;
+	public Double price;
 
 	@Column(name = "created_date")
 	@Temporal(TemporalType.DATE)
@@ -40,5 +39,5 @@ public class GoodsEntity extends AbstractEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "category_id")
-	public CategoriesEntity category_id;
+	public Categories category;
 }

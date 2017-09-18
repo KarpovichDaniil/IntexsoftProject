@@ -2,7 +2,7 @@ package main.java.by.intexsoft.adsboard;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import main.java.by.intexsoft.adsboard.entity.CategoriesEntity;
+import main.java.by.intexsoft.adsboard.model.Categories;
 import main.java.by.intexsoft.adsboard.service.CategoriesService;
 import main.java.by.intexsoft.adsboard.service.impl.CategoriesServiceImpl;
 
@@ -11,10 +11,10 @@ public class AdsBoardRun {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
 				"main.java.by.intexsoft.adsboard.config");
 		CategoriesService categoryService = context.getBean(CategoriesServiceImpl.class);
-		CategoriesEntity insert = new CategoriesEntity();
+		Categories insert = new Categories();
 		insert.name = "Cars";
 		categoryService.save(insert);
-		categoryService.findAll().forEach((CategoriesEntity category) -> System.out.println(category.name));
+		categoryService.findAll().forEach((Categories category) -> System.out.println(category.name));
 		context.close();
 	}
 }

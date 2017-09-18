@@ -1,4 +1,4 @@
-package main.java.by.intexsoft.adsboard.entity;
+package main.java.by.intexsoft.adsboard.model;
 
 import javax.persistence.Column;
 import static javax.persistence.FetchType.EAGER;
@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "users")
-public class UsersEntity extends AbstractEntity {
+public class Users extends AbstractEntity {
 
 	private static final long serialVersionUID = -5740112979627892785L;
 
@@ -36,5 +36,5 @@ public class UsersEntity extends AbstractEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-	public List<RolesEntity> roles;
+	public List<Roles> roles;
 }

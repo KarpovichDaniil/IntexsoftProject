@@ -2,7 +2,7 @@ package main.java.by.intexsoft.adsboard.service;
 
 import java.util.List;
 
-import main.java.by.intexsoft.adsboard.entity.AbstractEntity;
+import main.java.by.intexsoft.adsboard.model.AbstractEntity;
 
 public interface AbstractEntityService<T extends AbstractEntity> {
 	List<T> findAll();

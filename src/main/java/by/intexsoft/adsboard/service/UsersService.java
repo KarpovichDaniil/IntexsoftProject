@@ -1,7 +1,7 @@
 package main.java.by.intexsoft.adsboard.service;
 
-import main.java.by.intexsoft.adsboard.entity.UsersEntity;
+import main.java.by.intexsoft.adsboard.model.Users;
 
-public interface UsersService extends AbstractEntityService<UsersEntity>{
+public interface UsersService extends AbstractEntityService<Users>{
 
 }

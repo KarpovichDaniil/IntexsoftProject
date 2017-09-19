@@ -1,4 +1,4 @@
-package main.java.by.intexsoft.adsboard.entity;
+package main.java.by.intexsoft.adsboard.model;
 
 import javax.persistence.MappedSuperclass;
 

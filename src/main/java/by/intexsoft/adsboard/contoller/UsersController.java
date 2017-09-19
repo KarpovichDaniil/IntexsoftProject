@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.qos.logback.classic.Logger;
-import main.java.by.intexsoft.adsboard.entity.UsersEntity;
+import main.java.by.intexsoft.adsboard.model.Users;
 import main.java.by.intexsoft.adsboard.service.UsersService;
 
 @RestController
@@ -25,11 +25,11 @@ public class UsersController {
 	UsersService usersService;
 
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public ResponseEntity<?> add(@RequestBody UsersEntity entity) {
+	public ResponseEntity<?> add(@RequestBody Users entity) {
 		logger.info("Creation of a new user with username: " + entity.username + " ,password" + entity.password
 				+ " ,email" + entity.email + " and enabled" + entity.enabled);
 		try {
-			return new ResponseEntity<UsersEntity>(usersService.save(entity), HttpStatus.CREATED);
+			return new ResponseEntity<Users>(usersService.save(entity), HttpStatus.CREATED);
 		} catch (Exception e) {
 			logger.error("Error while saving new user with username: "  + entity.username + " ,password" + entity.password
 					+ " ,email" + entity.email + " or enabled" + entity.enabled);
@@ -52,8 +52,8 @@ public class UsersController {
 	@RequestMapping("/all")
 	public ResponseEntity<?> findAll() {
 		logger.info("Getting all users");
-		List<UsersEntity> resultList = usersService.findAll();
-		return new ResponseEntity<List<UsersEntity>>(resultList, HttpStatus.OK);
+		List<Users> resultList = usersService.findAll();
+		return new ResponseEntity<List<Users>>(resultList, HttpStatus.OK);
 	}
 
 }

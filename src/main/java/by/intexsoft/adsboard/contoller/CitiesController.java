@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import main.java.by.intexsoft.adsboard.entity.CitiesEntity;
+import main.java.by.intexsoft.adsboard.model.Cities;
 import main.java.by.intexsoft.adsboard.service.CitiesService;
 import ch.qos.logback.classic.Logger;
 
@@ -25,10 +25,10 @@ public class CitiesController {
 	CitiesService citiesService;
 
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public ResponseEntity<?> add(@RequestBody CitiesEntity entity) {
+	public ResponseEntity<?> add(@RequestBody Cities entity) {
 		logger.info("Creation of a new city with name: " + entity.name);
 		try {
-			return new ResponseEntity<CitiesEntity>(citiesService.save(entity), HttpStatus.CREATED);
+			return new ResponseEntity<Cities>(citiesService.save(entity), HttpStatus.CREATED);
 		} catch (Exception e) {
 			logger.error("Error while saving new city with name: " + entity.name);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -50,7 +50,7 @@ public class CitiesController {
 	@RequestMapping("/all")
 	public ResponseEntity<?> findAll() {
 		logger.info("Getting all cities");
-		List<CitiesEntity> resultList = citiesService.findAll();
-		return new ResponseEntity<List<CitiesEntity>>(resultList, HttpStatus.OK);
+		List<Cities> resultList = citiesService.findAll();
+		return new ResponseEntity<List<Cities>>(resultList, HttpStatus.OK);
 	}
 }

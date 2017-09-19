@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import main.java.by.intexsoft.adsboard.entity.RolesEntity;
+import main.java.by.intexsoft.adsboard.model.Roles;
 import main.java.by.intexsoft.adsboard.service.RolesService;
 import ch.qos.logback.classic.Logger;
 
@@ -25,10 +25,10 @@ public class RolesController {
 	RolesService rolesService;
 
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public ResponseEntity<?> add(@RequestBody RolesEntity entity) {
+	public ResponseEntity<?> add(@RequestBody Roles entity) {
 		logger.info("Creation of a new role with name: " + entity.name + "and description" + entity.description);
 		try {
-			return new ResponseEntity<RolesEntity>(rolesService.save(entity), HttpStatus.CREATED);
+			return new ResponseEntity<Roles>(rolesService.save(entity), HttpStatus.CREATED);
 		} catch (Exception e) {
 			logger.error("Error while saving new role with name: " + entity.name + "or description" + entity.description);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -50,8 +50,8 @@ public class RolesController {
 	@RequestMapping("/all")
 	public ResponseEntity<?> findAll() {
 		logger.info("Getting all roles");
-		List<RolesEntity> resultList = rolesService.findAll();
-		return new ResponseEntity<List<RolesEntity>>(resultList, HttpStatus.OK);
+		List<Roles> resultList = rolesService.findAll();
+		return new ResponseEntity<List<Roles>>(resultList, HttpStatus.OK);
 	}
 
 }

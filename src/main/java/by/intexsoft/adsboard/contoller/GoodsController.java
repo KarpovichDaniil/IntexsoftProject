@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import main.java.by.intexsoft.adsboard.entity.GoodsEntity;
+import main.java.by.intexsoft.adsboard.model.Goods;
 import main.java.by.intexsoft.adsboard.service.GoodsService;
 
 @RestController
@@ -25,16 +25,16 @@ public class GoodsController {
 	GoodsService goodsService;
 
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public ResponseEntity<?> add(@RequestBody GoodsEntity entity) {
+	public ResponseEntity<?> add(@RequestBody Goods entity) {
 		logger.info("Creation of a new goods with title: " + entity.title + " ,description" + entity.description
-				+ " ,city" + entity.city_id + " ,user" + entity.user_id + " ,price" + entity.price + " ,created_date"
-				+ entity.created_date + " and category" + entity.category_id);
+				+ " ,city" + entity.city + " ,user" + entity.user + " ,price" + entity.price + " ,created_date"
+				+ entity.created_date + " and category" + entity.category);
 		try {
-			return new ResponseEntity<GoodsEntity>(goodsService.save(entity), HttpStatus.CREATED);
+			return new ResponseEntity<Goods>(goodsService.save(entity), HttpStatus.CREATED);
 		} catch (Exception e) {
 			logger.error("Error while saving new goods with title: " + entity.title + " ,description" + entity.description
-					+ " ,city" + entity.city_id + " ,user" + entity.user_id + " ,price" + entity.price + " ,created_date"
-					+ entity.created_date + " or category" + entity.category_id);
+					+ " ,city" + entity.city + " ,user" + entity.user + " ,price" + entity.price + " ,created_date"
+					+ entity.created_date + " or category" + entity.category);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -54,7 +54,7 @@ public class GoodsController {
 	@RequestMapping("/all")
 	public ResponseEntity<?> findAll() {
 		logger.info("Getting all goods");
-		List<GoodsEntity> resultList = goodsService.findAll();
-		return new ResponseEntity<List<GoodsEntity>>(resultList, HttpStatus.OK);
+		List<Goods> resultList = goodsService.findAll();
+		return new ResponseEntity<List<Goods>>(resultList, HttpStatus.OK);
 	}
 }

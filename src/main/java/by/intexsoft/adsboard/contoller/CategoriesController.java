@@ -1,4 +1,4 @@
-package main.java.by.intexsoft.adsboard.contoller;
+package by.intexsoft.adsboard.contoller;
 
 import java.util.List;
 
@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import main.java.by.intexsoft.adsboard.model.Categories;
-import main.java.by.intexsoft.adsboard.service.CategoriesService;
+
+import by.intexsoft.adsboard.model.Categories;
+import by.intexsoft.adsboard.service.CategoriesService;
+
 import ch.qos.logback.classic.Logger;
 
 @RestController

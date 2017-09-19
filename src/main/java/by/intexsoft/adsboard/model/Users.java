@@ -1,4 +1,4 @@
-package main.java.by.intexsoft.adsboard.model;
+package by.intexsoft.adsboard.model;
 
 import javax.persistence.Column;
 import static javax.persistence.FetchType.EAGER;

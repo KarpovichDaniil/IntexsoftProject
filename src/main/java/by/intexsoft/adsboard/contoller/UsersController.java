@@ -1,4 +1,4 @@
-package main.java.by.intexsoft.adsboard.contoller;
+package by.intexsoft.adsboard.contoller;
 
 import java.util.List;
 
@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import by.intexsoft.adsboard.model.Users;
+import by.intexsoft.adsboard.service.UsersService;
 import ch.qos.logback.classic.Logger;
-import main.java.by.intexsoft.adsboard.model.Users;
-import main.java.by.intexsoft.adsboard.service.UsersService;
+
 
 @RestController
 @RequestMapping("/users")

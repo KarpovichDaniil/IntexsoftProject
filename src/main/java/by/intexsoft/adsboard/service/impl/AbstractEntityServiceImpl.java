@@ -1,12 +1,12 @@
-package main.java.by.intexsoft.adsboard.service.impl;
+package by.intexsoft.adsboard.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import main.java.by.intexsoft.adsboard.model.AbstractEntity;
-import main.java.by.intexsoft.adsboard.service.AbstractEntityService;
+import by.intexsoft.adsboard.model.AbstractEntity;
+import by.intexsoft.adsboard.service.AbstractEntityService;
 
 public class AbstractEntityServiceImpl<T extends AbstractEntity> implements AbstractEntityService<T> {
 

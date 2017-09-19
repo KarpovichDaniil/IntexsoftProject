@@ -1,4 +1,5 @@
-package main.java.by.intexsoft.adsboard.model;
+
+package by.intexsoft.adsboard.model;
 
 import java.util.Date;
 

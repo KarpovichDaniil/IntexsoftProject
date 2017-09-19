@@ -1,15 +1,15 @@
-package main.java.by.intexsoft.adsboard;
+package by.intexsoft.adsboard;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import main.java.by.intexsoft.adsboard.model.Categories;
-import main.java.by.intexsoft.adsboard.service.CategoriesService;
-import main.java.by.intexsoft.adsboard.service.impl.CategoriesServiceImpl;
+import by.intexsoft.adsboard.model.Categories;
+import by.intexsoft.adsboard.service.CategoriesService;
+import by.intexsoft.adsboard.service.impl.CategoriesServiceImpl;
 
 public class AdsBoardRun {
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-				"main.java.by.intexsoft.adsboard.config");
+				"by.intexsoft.adsboard.config");
 		CategoriesService categoryService = context.getBean(CategoriesServiceImpl.class);
 		Categories insert = new Categories();
 		insert.name = "Cars";

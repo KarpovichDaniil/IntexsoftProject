@@ -1,4 +1,4 @@
-package main.java.by.intexsoft.adsboard.config;
+package by.intexsoft.adsboard.config;
 
 import static org.springframework.orm.jpa.vendor.Database.POSTGRESQL;
 
@@ -22,10 +22,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("main.java.by.intexsoft.adsboard.service")
+@ComponentScan("by.intexsoft.adsboard.service")
 @PropertySource("classpath:app.properties")
-@EnableJpaRepositories("main.java.by.intexsoft.adsboard.repository")
-public class DatabaseConfig {
+@EnableJpaRepositories("by.intexsoft.adsboard.repository")
+public class ApplicationDataConfig {
 	@Value("${db.driver}")
 	private String driverClassName;
 	@Value("${db.url}")
@@ -63,7 +63,7 @@ public class DatabaseConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactoryBean.setDataSource(dataSource());
-		entityManagerFactoryBean.setPackagesToScan("main.java.by.intexsoft.adsboard.entity");
+		entityManagerFactoryBean.setPackagesToScan("by.intexsoft.adsboard.entity");
 		entityManagerFactoryBean.setJpaProperties(jpaProperties());
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);

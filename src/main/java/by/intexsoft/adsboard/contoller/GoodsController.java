@@ -1,4 +1,4 @@
-package main.java.by.intexsoft.adsboard.contoller;
+package by.intexsoft.adsboard.contoller;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import main.java.by.intexsoft.adsboard.model.Goods;
-import main.java.by.intexsoft.adsboard.service.GoodsService;
+import by.intexsoft.adsboard.model.Goods;
+import by.intexsoft.adsboard.service.GoodsService;
 
 @RestController
 @RequestMapping("/goods")

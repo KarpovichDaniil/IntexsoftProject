@@ -11,7 +11,7 @@ import by.intexsoft.adsboard.service.AbstractEntityService;
 public class AbstractEntityServiceImpl<T extends AbstractEntity> implements AbstractEntityService<T> {
 
 	@Autowired
-	JpaRepository<T, Long> repository;
+	private JpaRepository<T, Long> repository;
 
 	@Override
 	public List<T> findAll() {

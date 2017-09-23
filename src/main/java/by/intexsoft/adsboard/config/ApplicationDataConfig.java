@@ -4,6 +4,7 @@ import static org.springframework.orm.jpa.vendor.Database.POSTGRESQL;
 
 import java.util.Properties;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -63,7 +64,7 @@ public class ApplicationDataConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactoryBean.setDataSource(dataSource());
-		entityManagerFactoryBean.setPackagesToScan("by.intexsoft.adsboard.entity");
+		entityManagerFactoryBean.setPackagesToScan("by.intexsoft.adsboard.model");
 		entityManagerFactoryBean.setJpaProperties(jpaProperties());
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
@@ -89,11 +90,9 @@ public class ApplicationDataConfig {
 	 * @return PlatformTransactionManager
 	 */
 	@Bean
-	public PlatformTransactionManager transactionManager() {
-		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
-		return transactionManager;
-	}
+    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+        return new JpaTransactionManager(entityManagerFactory);
+    }
 
 	private Properties jpaProperties() {
 		Properties properties = new Properties();

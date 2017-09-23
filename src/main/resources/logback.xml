@@ -23,11 +23,11 @@
 		</encoder>
 	</appender>
 
-	<logger name="by.intexsoft" level="debug" additivity="false">
+	<logger name="by.intexsoft" level="info" additivity="false">
 		<appender-ref ref="fileAppenderApplication" />
 	</logger>
 
-	<logger name="org.springframework" level="error" additivity="false">
+	<logger name="org.springframework" level="info" additivity="false">
 		<appender-ref ref="fileAppenderDependencies" />
 	</logger>
 

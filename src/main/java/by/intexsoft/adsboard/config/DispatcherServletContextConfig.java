@@ -10,13 +10,14 @@ import by.intexsoft.adsboard.service.impl.UsersServiceImpl;
 @Configuration
 @EnableWebMvc
 @ComponentScan("by.intexsoft.adsboard.controller")
-public class DispatcherServletContextConfig {
+public class DispatcherServletContextConfig extends ApplicationDataConfig{
 
 	/**
 	 * @return instance of a UsersServiceImpl class
 	 */
 	@Bean
-	public UsersServiceImpl usersService() {
+	public static UsersServiceImpl usersService() {
 		return new UsersServiceImpl();
 	}
+	
 }

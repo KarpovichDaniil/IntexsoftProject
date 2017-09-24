@@ -1,4 +1,4 @@
-package by.intexsoft.adsboard.contoller;
+package by.intexsoft.adsboard.controller;
 
 import java.util.List;
 
@@ -23,7 +23,12 @@ public class UsersController {
 	private static Logger logger = (Logger) LoggerFactory.getLogger(CitiesController.class.getName());
 
 	@Autowired
-	UsersService usersService;
+	private final UsersService usersService;
+
+	@Autowired
+	public UsersController(UsersService usersService) {
+		this.usersService = usersService;
+	}
 
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	public ResponseEntity<?> add(@RequestBody Users entity) {

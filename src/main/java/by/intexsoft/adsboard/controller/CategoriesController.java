@@ -1,4 +1,4 @@
-package by.intexsoft.adsboard.contoller;
+package by.intexsoft.adsboard.controller;
 
 import java.util.List;
 
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import by.intexsoft.adsboard.model.Categories;
 import by.intexsoft.adsboard.service.CategoriesService;
 
@@ -24,7 +23,12 @@ public class CategoriesController {
 	private static Logger logger = (Logger) LoggerFactory.getLogger(CategoriesController.class.getName());
 
 	@Autowired
-	CategoriesService categoryService;
+	private final CategoriesService categoryService;
+
+	@Autowired
+	public CategoriesController(CategoriesService categoryService) {
+		this.categoryService = categoryService;
+	}
 
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	public ResponseEntity<?> add(@RequestBody Categories entity) {

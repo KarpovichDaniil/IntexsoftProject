@@ -24,8 +24,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("by.intexsoft.adsboard.service")
-@PropertySource("classpath:app.properties")
 @EnableJpaRepositories("by.intexsoft.adsboard.repository")
+@PropertySource("classpath:app.properties")
 public class ApplicationDataConfig {
 	@Value("${db.driver}")
 	private String driverClassName;

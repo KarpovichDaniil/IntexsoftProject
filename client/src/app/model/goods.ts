@@ -1,13 +1,13 @@
 import Cities from './cities';
-import Users from './users';
+import {Users} from './user';
 import Categories from './categories';
 
-export default class Goods {
+export class Goods {
   id: number;
   title: string;
   description: string;
   city: Cities;
-  user: Users;
+  author: Users;
   price: number;
   created_date: Date = new Date();
   category: Categories;

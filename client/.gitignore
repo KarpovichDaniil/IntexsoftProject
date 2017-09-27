@@ -1,0 +1,6 @@
+/.eclipse/
+/.idea/
+
+/dist/
+
+/node_modules/

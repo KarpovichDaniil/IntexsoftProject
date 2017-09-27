@@ -30,6 +30,9 @@ public class Goods extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	public Users user;
+	
+	@Column(name = "phone")
+	public Double phone;
 
 	@Column(name = "price")
 	public Double price;

@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.intexsoft.adsboard.model.Goods;
+import by.intexsoft.adsboard.model.Users;
 import by.intexsoft.adsboard.service.GoodsService;
 
 @RestController
-@RequestMapping("/goods")
 public class GoodsController {
-	private static Logger logger = (Logger) LoggerFactory.getLogger(CitiesController.class.getName());
+	private static Logger logger = (Logger) LoggerFactory.getLogger(GoodsController.class.getName());
 
-	@Autowired
 	private final GoodsService goodsService;
 
 	@Autowired
@@ -29,7 +28,19 @@ public class GoodsController {
 		this.goodsService = goodsService;
 	}
 
-	@RequestMapping(path = "/add", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/goods", method = RequestMethod.GET)
+	public ResponseEntity<?> findAll() {
+		logger.info("Getting all goods");
+		List<Goods> resultList = goodsService.findAll();
+		return new ResponseEntity<List<Goods>>(resultList, HttpStatus.OK);
+	}*/
+	@RequestMapping(value = "/goods", method = RequestMethod.GET)
+    public List<Goods> findAll() {
+        logger.info("Request was received to retrieve all users");
+        return goodsService.findAll();
+    }
+	
+	@RequestMapping(path = "/goods/add", method = RequestMethod.POST)
 	public ResponseEntity<?> add(@RequestBody Goods entity) {
 		logger.info("Creation of a new goods with title: " + entity.title + " ,description" + entity.description
 				+ " ,city" + entity.city + " ,user" + entity.user + " ,price" + entity.price + " ,created_date"
@@ -44,7 +55,7 @@ public class GoodsController {
 		}
 	}
 
-	@RequestMapping("/del/{id}")
+	@RequestMapping("/goods/del/{id}")
 	public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
 		logger.info("Delete goods with id= " + id);
 		try {
@@ -55,11 +66,10 @@ public class GoodsController {
 		}
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
+	@RequestMapping(value = "/goods/{id}", method = RequestMethod.GET)
+    public Goods findOne(@PathVariable("id") Long id) {
+        logger.info("Request was received to find a single user {}", id);
+        return goodsService.findOne(id);
+    }
 
-	@RequestMapping("/all")
-	public ResponseEntity<?> findAll() {
-		logger.info("Getting all goods");
-		List<Goods> resultList = goodsService.findAll();
-		return new ResponseEntity<List<Goods>>(resultList, HttpStatus.OK);
-	}
 }

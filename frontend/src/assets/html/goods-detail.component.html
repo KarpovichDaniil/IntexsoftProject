@@ -1,0 +1,17 @@
+<md-card>
+    <md-card-title class='mat-h1'>{{singleGoods?.title}}</md-card-title>
+    <img md-card-image src='./assets/image/002.jpeg' alt='picture'>
+    <div class='card-footer' color='primary'>
+        <md-card-content class='mat-body'>{{singleGoods?.description}}</md-card-content>
+        <md-card-content class='mat-body'>{{singleGoods?.city.id}}</md-card-content>
+        <md-card-content class='mat-body'>{{singleGoods?.phone}}</md-card-content>
+        <md-card-content class='mat-body'>{{singleGoods?.price}}</md-card-content>
+        <md-card-content class='mat-body'>{{singleGoods?.author}}</md-card-content>
+        <md-card-content class='mat-body'>{{singleGoods?.category.id.valueOf()}}</md-card-content>
+
+        <div class='button-container'>
+            <button md-raised-button color='primary' (click)="goBack()">Go Back</button>
+        </div>
+    </div>
+</md-card>
+

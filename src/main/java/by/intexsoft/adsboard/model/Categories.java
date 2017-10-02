@@ -12,4 +12,6 @@ public class Categories extends AbstractEntity {
 
 	@Column(name = "name")
 	public String name;
+	
+	
 }

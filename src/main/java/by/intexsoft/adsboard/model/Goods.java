@@ -32,7 +32,7 @@ public class Goods extends AbstractEntity {
 	public Users user;
 	
 	@Column(name = "phone")
-	public Double phone;
+	public String phone;
 
 	@Column(name = "price")
 	public Double price;

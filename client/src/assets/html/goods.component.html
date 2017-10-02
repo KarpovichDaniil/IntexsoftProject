@@ -1,8 +1,0 @@
-<md-card *ngFor='let oneGoods of goods'>
-    <md-card-title>{{oneGoods.title}}</md-card-title>
-    <img md-card-image src='/assets/image/001.jpeg' alt='picture'>
-    <div class='card-footer' color='primary'>
-        <md-card-content>{{oneGoods.description}}</md-card-content>
-        <button md-raised-button color='primary' [routerLink]='["/goods", oneGoods.id]'>Read more...</button>
-    </div>
-</md-card>

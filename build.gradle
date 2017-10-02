@@ -1,6 +1,6 @@
 apply plugin:'war'
 apply plugin: 'com.bmuschko.tomcat'
-version '0.1.0'
+version = '0.1.0'
 def tomcatVersion='7.0.76'
 
 buildscript{
@@ -37,5 +37,5 @@ jar {
 }
 
 war {
-    baseName = 'war-gradle'
+    from 'frontend/dist'
 }

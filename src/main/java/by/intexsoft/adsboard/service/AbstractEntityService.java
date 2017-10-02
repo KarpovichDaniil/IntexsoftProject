@@ -13,7 +13,7 @@ public interface AbstractEntityService<T extends AbstractEntity> {
 
 	T save(T entity);
 
-	T findById(Long id);
-
 	void deleteById(Long id);
+
+	T findOne(Long id);
 }

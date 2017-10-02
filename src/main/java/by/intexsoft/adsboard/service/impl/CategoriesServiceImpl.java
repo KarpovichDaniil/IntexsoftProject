@@ -10,5 +10,5 @@ import by.intexsoft.adsboard.service.CategoriesService;
 @Service
 public class CategoriesServiceImpl extends AbstractEntityServiceImpl<Categories> implements CategoriesService {
 	@Autowired
-	private CategoriesRepository repository;
+	CategoriesRepository repository;
 }

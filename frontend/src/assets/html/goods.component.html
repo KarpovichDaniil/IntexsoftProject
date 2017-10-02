@@ -1,0 +1,21 @@
+<h2>All goods</h2>
+
+<ul>
+    <li *ngFor="let good of goods">
+        <span>{{good}}</span>
+        {{good?.title}}
+    </li>
+</ul>
+<md-card *ngFor="let oneGoods of goods">
+
+    {{oneGoods?.id}}
+    <md-card-title>{{oneGoods?.title}}</md-card-title>
+    <img md-card-image src='./assets/image/001.jpeg' alt='picture'>
+    <div class='card-footer' color='primary'>
+        <md-card-content>{{oneGoods?.description}}</md-card-content>
+        <button md-raised-button color='primary' [routerLink]='["/goods", oneGoods?.id]'>Read more...</button>
+    </div>
+</md-card>
+<md-card>
+    <button md-raised-button color='primary'>Show more goods!</button>
+</md-card>

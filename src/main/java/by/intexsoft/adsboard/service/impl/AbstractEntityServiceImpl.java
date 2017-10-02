@@ -29,7 +29,7 @@ public class AbstractEntityServiceImpl<T extends AbstractEntity> implements Abst
 	}
 
 	@Override
-	public T findById(Long id) {
+	public T findOne(Long id) {
 		return repository.findOne(id);
 	}
 

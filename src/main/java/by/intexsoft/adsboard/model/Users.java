@@ -30,7 +30,6 @@ public class Users extends AbstractEntity {
 	public Boolean enabled;
 
 	@ManyToMany(fetch = EAGER)
-    //@JsonManagedReference
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),

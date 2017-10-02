@@ -18,7 +18,6 @@ import ch.qos.logback.classic.Logger;
 
 
 @RestController
-@RequestMapping("/users")
 public class UsersController {
 	private static Logger logger = (Logger) LoggerFactory.getLogger(CitiesController.class.getName());
 
@@ -30,7 +29,7 @@ public class UsersController {
 		this.usersService = usersService;
 	}
 
-	@RequestMapping(path = "/add", method = RequestMethod.POST)
+	@RequestMapping(path = "/user/add", method = RequestMethod.POST)
 	public ResponseEntity<?> add(@RequestBody Users entity) {
 		logger.info("Creation of a new user with username: " + entity.username + " ,password" + entity.password
 				+ " ,email" + entity.email + " and enabled" + entity.enabled);
@@ -54,12 +53,22 @@ public class UsersController {
 		}
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-
-	@RequestMapping("/all")
+/*
+	@RequestMapping("/user/all")
 	public ResponseEntity<?> findAll() {
 		logger.info("Getting all users");
 		List<Users> resultList = usersService.findAll();
 		return new ResponseEntity<List<Users>>(resultList, HttpStatus.OK);
-	}
+	}*/
 
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    public Users findOne(@PathVariable("id") Long id) {
+        logger.info("Request was received to find a single user {}", id);
+        return usersService.findOne(id);
+    }
+	  @RequestMapping(value = "/users", method = RequestMethod.GET)
+	    public List<Users> findAll() {
+	        logger.info("Request was received to retrieve all users");
+	        return usersService.findAll();
+	    }
 }

@@ -9,9 +9,6 @@ import {WorkspaceComponent} from "../component/workspace.component";
 import {PageNotFoundComponent} from "../component/page-not-found.component";
 import {GoodsDetailComponent} from "../component/goods-detail.component";
 
-/**
- * An array of key/value pairs which in essence specify what urls correspond to particular views
- */
 const routes: Routes = [
     {
         path: '',

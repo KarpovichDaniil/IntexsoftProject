@@ -14,6 +14,23 @@ export class GoodsService implements IGoodsService {
     constructor(private http: Http) {
     }
 
+    getAllGoods(): Promise<Goods[]> {
+        return this.http.get(ALL_GOODS_PATH)
+            .toPromise()
+            .then(response =>
+            {console.log(response);
+                return response.json();})
+            .catch(error => this.errorHandle(error));
+    }
+
+    private errorHandle(error): Promise<Goods> {
+        console.log(error);
+        return null;
+    }
+
+
+
+
     findAll(): Observable<Goods[]> {
         return this.http.get(ALL_GOODS_PATH, this.getPlainRequestOptions())
             .map((response: Response) => {

@@ -19,7 +19,7 @@ import ch.qos.logback.classic.Logger;
 
 @RestController
 public class UsersController {
-	private static Logger logger = (Logger) LoggerFactory.getLogger(CitiesController.class.getName());
+	private static Logger logger = (Logger) LoggerFactory.getLogger(UsersController.class.getName());
 
 	@Autowired
 	private final UsersService usersService;
@@ -53,13 +53,6 @@ public class UsersController {
 		}
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-/*
-	@RequestMapping("/user/all")
-	public ResponseEntity<?> findAll() {
-		logger.info("Getting all users");
-		List<Users> resultList = usersService.findAll();
-		return new ResponseEntity<List<Users>>(resultList, HttpStatus.OK);
-	}*/
 
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public Users findOne(@PathVariable("id") Long id) {

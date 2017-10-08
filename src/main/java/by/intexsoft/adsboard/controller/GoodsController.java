@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.intexsoft.adsboard.model.Goods;
-import by.intexsoft.adsboard.model.Users;
 import by.intexsoft.adsboard.service.GoodsService;
 
 @RestController
@@ -28,18 +27,12 @@ public class GoodsController {
 		this.goodsService = goodsService;
 	}
 
-	/*@RequestMapping(value = "/goods", method = RequestMethod.GET)
-	public ResponseEntity<?> findAll() {
-		logger.info("Getting all goods");
-		List<Goods> resultList = goodsService.findAll();
-		return new ResponseEntity<List<Goods>>(resultList, HttpStatus.OK);
-	}*/
 	@RequestMapping(value = "/goods", method = RequestMethod.GET)
-    public List<Goods> findAll() {
-        logger.info("Request was received to retrieve all users");
-        return goodsService.findAll();
-    }
-	
+	public List<Goods> findAll() {
+		logger.info("Request was received to retrieve all users");
+		return goodsService.findAll();
+	}
+
 	@RequestMapping(path = "/goods/add", method = RequestMethod.POST)
 	public ResponseEntity<?> add(@RequestBody Goods entity) {
 		logger.info("Creation of a new goods with title: " + entity.title + " ,description" + entity.description
@@ -48,9 +41,9 @@ public class GoodsController {
 		try {
 			return new ResponseEntity<Goods>(goodsService.save(entity), HttpStatus.CREATED);
 		} catch (Exception e) {
-			logger.error("Error while saving new goods with title: " + entity.title + " ,description" + entity.description
-					+ " ,city" + entity.city + " ,user" + entity.user + " ,price" + entity.price + " ,created_date"
-					+ entity.created_date + " or category" + entity.category);
+			logger.error("Error while saving new goods with title: " + entity.title + " ,description"
+					+ entity.description + " ,city" + entity.city + " ,user" + entity.user + " ,price" + entity.price
+					+ " ,created_date" + entity.created_date + " or category" + entity.category);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -66,10 +59,11 @@ public class GoodsController {
 		}
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
+
 	@RequestMapping(value = "/goods/{id}", method = RequestMethod.GET)
-    public Goods findOne(@PathVariable("id") Long id) {
-        logger.info("Request was received to find a single user {}", id);
-        return goodsService.findOne(id);
-    }
+	public Goods findOne(@PathVariable("id") Long id) {
+		logger.info("Request was received to find a single user {}", id);
+		return goodsService.findOne(id);
+	}
 
 }

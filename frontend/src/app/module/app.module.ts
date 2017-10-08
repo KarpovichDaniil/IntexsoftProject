@@ -1,9 +1,23 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {
-    MdToolbarModule, MdTabsModule, MdButtonModule, MdMenuModule, MdIconModule,
-    MdCardModule, MdInputModule, MdProgressSpinnerModule, MdExpansionModule,
-    MdDatepickerModule, MdNativeDateModule, MdGridListModule, MdSelectModule
-} from '@angular/material';
+    MdToolbarModule,
+    MdTabsModule,
+    MdButtonModule,
+    MdMenuModule,
+    MdIconModule,
+    MdCardModule,
+    MdInputModule,
+    MdProgressSpinnerModule,
+    MdExpansionModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
+    MdGridListModule,
+    MdSelectModule,
+    MdTableModule,
+    MdRadioModule,
+    MdSlideToggleModule,
+    MdCheckboxModule
+} from "@angular/material";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
@@ -29,20 +43,11 @@ import {GoodsDetailComponent} from "../component/goods-detail.component";
 const URL_I18N_FILES = 'assets/i18n/';
 const FILE_FORMAT = '.json';
 
-/**
- * @param {HttpClient} http - an object of type HttpClient which has methods
- * to perform http requests
- * @returns {TranslateHttpLoader} - wrapper object, which in essence uses
- * underlying HttpClient to load translations via http protocol
- */
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     return new TranslateHttpLoader(http, URL_I18N_FILES, FILE_FORMAT);
 }
 
-/**
- * The root module of the application conventionally named AppModule. Specifies overall structure of the application.
- * Provides necessary services and feature modules.
- */
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -59,7 +64,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     ],
     imports: [
         BrowserModule,
-
         BrowserAnimationsModule,
         MdToolbarModule,
         MdTabsModule,
@@ -74,7 +78,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
         MdNativeDateModule,
         MdGridListModule,
         MdSelectModule,
-
+        MdTableModule,
+        MdRadioModule,
+        MdSlideToggleModule,
+        MdCheckboxModule,
         FormsModule,
         ReactiveFormsModule,
         AppRoutingModule,

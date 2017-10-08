@@ -1,6 +1,5 @@
 {
   "Title": "Welcome to AdsBoard!!",
-  "Dashboard": "Dashboard",
   "Users": "Users",
   "Description": "The more popular goods:",
   "List": "A list of goods",
@@ -10,5 +9,5 @@
   "Password": "Password",
   "Login_form": "Admin login form",
   "Home": "Home",
-  "Home_page": "You're at the AdsBoard"
+  "Home_page": "You're at the homepage"
 }

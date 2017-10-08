@@ -1,21 +1,33 @@
-<h2>All goods</h2>
-
-<ul>
-    <li *ngFor="let good of goods">
-        <span>{{good}}</span>
-        {{good?.title}}
-    </li>
-</ul>
-<md-card *ngFor="let oneGoods of goods">
-
-    {{oneGoods?.id}}
-    <md-card-title>{{oneGoods?.title}}</md-card-title>
-    <img md-card-image src='./assets/image/001.jpeg' alt='picture'>
-    <div class='card-footer' color='primary'>
-        <md-card-content>{{oneGoods?.description}}</md-card-content>
-        <button md-raised-button color='primary' [routerLink]='["/goods", oneGoods?.id]'>Read more...</button>
-    </div>
-</md-card>
+<h1>All goods</h1>
 <md-card>
-    <button md-raised-button color='primary'>Show more goods!</button>
+    <md-grid-list cols="4" rowHeight="4:1">
+        <md-grid-tile [colspan]="2" [rowspan]="4">
+            <div class="img">
+                <img md-card-image src='./assets/image/001.jpeg' alt='Some error'>
+            </div>
+        </md-grid-tile>
+        <md-grid-tile [colspan]="2" [rowspan]="1">
+            <md-card-title><a [routerLink]='["/goods"]'>Audi A8</a></md-card-title>
+        </md-grid-tile>
+        <md-grid-tile [colspan]="2" [rowspan]="1">
+            <md-card-subtitle>Description Description Description Description Description Description Description
+                Description Description
+            </md-card-subtitle>
+        </md-grid-tile>
+        <md-grid-tile [colspan]="2" [rowspan]="1">
+            <md-card-content class="price-content">50000 $</md-card-content>
+        </md-grid-tile>
+    </md-grid-list>
+</md-card>
+<md-card *ngFor="let oneGoods of goods">
+    <md-grid-list cols="4" rowHeight="2:1">
+        <md-grid-tile>
+            <img md-card-md-image src='./assets/image/001.jpeg' alt='picture'>
+        </md-grid-tile>
+        <md-grid-tile>
+            <md-card-title><a [routerLink]='["/goods", oneGoods?.id]'><h2>{{oneGoods?.title}}</h2></a></md-card-title>
+            <md-card-subtitle>{{oneGoods?.description}}</md-card-subtitle>
+            <md-card-content class="price-content">{{oneGoods?.price}}</md-card-content>
+        </md-grid-tile>
+    </md-grid-list>
 </md-card>

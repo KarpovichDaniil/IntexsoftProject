@@ -27,9 +27,8 @@ export class WorkspaceComponent {
 
     }
     findAllGoods(): void {
-            this.goodsService.findAll()
-            .subscribe((goods: Goods[]) => this.goods = goods),
-            (error => alert(error.message));
+        this.goodsService.getAllGoods()
+            .then((goods: Goods[]) => this.goods = goods);
     }
     findAllUsers(): void {
         this.userService.findAll()

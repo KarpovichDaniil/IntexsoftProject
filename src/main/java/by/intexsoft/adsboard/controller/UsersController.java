@@ -16,7 +16,6 @@ import by.intexsoft.adsboard.model.Users;
 import by.intexsoft.adsboard.service.UsersService;
 import ch.qos.logback.classic.Logger;
 
-
 @RestController
 public class UsersController {
 	private static Logger logger = (Logger) LoggerFactory.getLogger(UsersController.class.getName());
@@ -36,8 +35,8 @@ public class UsersController {
 		try {
 			return new ResponseEntity<Users>(usersService.save(entity), HttpStatus.CREATED);
 		} catch (Exception e) {
-			logger.error("Error while saving new user with username: "  + entity.username + " ,password" + entity.password
-					+ " ,email" + entity.email + " or enabled" + entity.enabled);
+			logger.error("Error while saving new user with username: " + entity.username + " ,password"
+					+ entity.password + " ,email" + entity.email + " or enabled" + entity.enabled);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -55,13 +54,14 @@ public class UsersController {
 	}
 
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-    public Users findOne(@PathVariable("id") Long id) {
-        logger.info("Request was received to find a single user {}", id);
-        return usersService.findOne(id);
-    }
-	  @RequestMapping(value = "/users", method = RequestMethod.GET)
-	    public List<Users> findAll() {
-	        logger.info("Request was received to retrieve all users");
-	        return usersService.findAll();
-	    }
+	public Users findOne(@PathVariable("id") Long id) {
+		logger.info("Request was received to find a single user {}", id);
+		return usersService.findOne(id);
+	}
+
+	@RequestMapping(value = "/users", method = RequestMethod.GET)
+	public List<Users> findAll() {
+		logger.info("Request was received to retrieve all users");
+		return usersService.findAll();
+	}
 }

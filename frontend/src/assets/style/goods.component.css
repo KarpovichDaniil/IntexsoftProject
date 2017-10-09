@@ -46,18 +46,9 @@ a {
         justify-content: flex-start !important;
 }
 
-.img {
-    display: inline-block;
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-    border: 5px solid #FFFFFF;
-    background: #FFFFFF;
-    outline: 1px solid #CCCCCC;
-    margin: 10px;
-}
+
 .img img {
-    width: 200px;
+    width: 250px;
     border: none;
     margin: 0;
     padding: 0;

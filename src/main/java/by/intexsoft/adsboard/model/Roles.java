@@ -8,15 +8,22 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "roles")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Roles extends AbstractEntity{
+public class Roles extends AbstractEntity implements GrantedAuthority {
 
 	private static final long serialVersionUID = -2131224364992410235L;
+	
+    @Override
+    public String getAuthority() {
+        return this.name;
+    }
 	
 	@Column(name = "name")
 	public String name;

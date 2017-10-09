@@ -4,7 +4,7 @@
     <button md-raised-button color='primary' routerLink='/workspace'>Workspace</button>
     <button md-raised-button color='primary' [mdMenuTriggerFor]="categoriesMenu">Categories</button>
     <md-menu #categoriesMenu="mdMenu">
-        <button md-menu-item routerLink='/goods'>Car {{category?.name}}</button>
+        <button md-menu-item routerLink='/goods'>Car</button>
     </md-menu>
     <button *ngIf='!isLoggedIn()' color='primary' md-raised-button routerLink='/login'>Log in</button>
     <button *ngIf='!isLoggedIn()' color='primary' md-raised-button routerLink='/signup'>Sign up</button>

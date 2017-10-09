@@ -1,8 +1,10 @@
-package main.java.by.intexsoft.adsboard.service;
+package by.intexsoft.adsboard.service;
 
 import java.util.List;
 
-import main.java.by.intexsoft.adsboard.model.AbstractEntity;
+
+import by.intexsoft.adsboard.model.AbstractEntity;
+
 
 public interface AbstractEntityService<T extends AbstractEntity> {
 	List<T> findAll();
@@ -11,7 +13,7 @@ public interface AbstractEntityService<T extends AbstractEntity> {
 
 	T save(T entity);
 
-	T findById(Long id);
-
 	void deleteById(Long id);
+
+	T findOne(Long id);
 }

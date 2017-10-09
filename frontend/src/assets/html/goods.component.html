@@ -1,0 +1,34 @@
+<h1>All goods</h1>
+<md-card-title-group><md-card-title><a [routerLink]='["/goods"]'>Audi A8</a></md-card-title></md-card-title-group>
+<md-card>
+    <md-grid-list cols="4" rowHeight="4:1">
+        <md-grid-tile [colspan]="2" [rowspan]="4">
+            <div class="img">
+                <img md-card-image src='./assets/image/001.jpeg' alt='Some error'>
+            </div>
+        </md-grid-tile>
+        <md-grid-tile [colspan]="2" [rowspan]="1">
+            <md-card-title><a [routerLink]='["/goods"]'>Audi A8</a></md-card-title>
+        </md-grid-tile>
+        <md-grid-tile [colspan]="2" [rowspan]="1">
+            <md-card-subtitle>Description Description Description Description Description Description Description
+                Description Description
+            </md-card-subtitle>
+        </md-grid-tile>
+        <md-grid-tile [colspan]="2" [rowspan]="1">
+            <md-card-content class="price-content">50000 $</md-card-content>
+        </md-grid-tile>
+    </md-grid-list>
+</md-card>
+<md-card *ngFor="let singleGoods of goods">
+    <md-grid-list cols="4" rowHeight="2:1">
+        <md-grid-tile>
+            <img md-card-md-image src='./assets/image/001.jpeg' alt='picture'>
+        </md-grid-tile>
+        <md-grid-tile>
+            <md-card-title><a [routerLink]='["/goods", singleGoods?.id]'><h2>{{singleGoods?.title}}</h2></a></md-card-title>
+            <md-card-subtitle>{{singleGoods?.description}}</md-card-subtitle>
+            <md-card-content class="price-content">{{singleGoods?.price}}</md-card-content>
+        </md-grid-tile>
+    </md-grid-list>
+</md-card>

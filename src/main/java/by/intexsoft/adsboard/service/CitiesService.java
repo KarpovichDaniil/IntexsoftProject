@@ -1,6 +1,6 @@
-package main.java.by.intexsoft.adsboard.service;
+package by.intexsoft.adsboard.service;
 
-import main.java.by.intexsoft.adsboard.model.Cities;
+import by.intexsoft.adsboard.model.Cities;
 
 public interface CitiesService extends AbstractEntityService<Cities>{
 

@@ -1,4 +1,5 @@
-package main.java.by.intexsoft.adsboard.model;
+
+package by.intexsoft.adsboard.model;
 
 import java.util.Date;
 
@@ -29,6 +30,9 @@ public class Goods extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	public Users user;
+	
+	@Column(name = "phone")
+	public String phone;
 
 	@Column(name = "price")
 	public Double price;

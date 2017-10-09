@@ -1,7 +1,12 @@
-package main.java.by.intexsoft.adsboard.service;
+package by.intexsoft.adsboard.service;
 
-import main.java.by.intexsoft.adsboard.model.Users;
+import javax.transaction.Transactional;
+
+import by.intexsoft.adsboard.model.Users;
 
 public interface UsersService extends AbstractEntityService<Users>{
+	Users findByUserName(String name);
 
+    @Transactional
+    Users register(Users user);
 }

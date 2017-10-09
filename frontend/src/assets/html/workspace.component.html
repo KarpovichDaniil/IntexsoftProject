@@ -1,0 +1,135 @@
+<md-accordion xmlns:maxlength="http://www.w3.org/1999/xhtml">
+
+    <!-- Categories creation -->
+    <md-expansion-panel hideToggle='true'>
+        <md-expansion-panel-header>
+            <md-panel-title>
+                Categories creation
+            </md-panel-title>
+            <md-panel-description>
+                <md-icon color='primary'>note_add</md-icon>
+            </md-panel-description>
+        </md-expansion-panel-header>
+        <form>
+            <md-grid-list cols='2' rowHeight="3.5:1">
+                <md-grid-tile colspan='1'>
+                    <md-form-field>
+                        <input mdInput class='mat-accent' type='text' placeholder='Category Title'>
+                    </md-form-field>
+                </md-grid-tile>
+
+                <md-grid-tile colspan='1'>
+                    <button md-raised-button color='primary' (click)='addCategory()'>Add category</button>
+                </md-grid-tile>
+            </md-grid-list>
+
+        </form>
+
+    </md-expansion-panel>
+
+    <!-- Goods creation -->
+    <md-expansion-panel hideToggle='true'>
+        <md-expansion-panel-header>
+            <md-panel-title>
+                Goods creation
+            </md-panel-title>
+            <md-panel-description>
+                <md-icon color='primary'>note_add</md-icon>
+            </md-panel-description>
+        </md-expansion-panel-header>
+
+        <form>
+
+            <md-grid-list cols='2' rowHeight="3.5:1">
+
+                <md-grid-tile colspan='1'>
+                    <md-form-field>
+                        <input mdInput class='mat-accent' type='text' placeholder='Goods Title'>
+                    </md-form-field>
+                </md-grid-tile>
+
+                <md-grid-tile colspan='1'>
+                    <md-form-field>
+                        <input mdInput class='mat-accent' type='text' placeholder='Goods price'>
+                    </md-form-field>
+                </md-grid-tile>
+
+                <md-grid-tile colspan='2'>
+                    <md-form-field>
+                        <input mdInput class='mat-accent' type='text' placeholder='User phone'>
+                    </md-form-field>
+                </md-grid-tile>
+
+                <md-grid-tile colspan='2'>
+                    <md-select placeholder='Category'>
+                        <md-option *ngFor='let category of categories' [value]='category.value'>
+                            {{category.viewValue}}
+                        </md-option>
+                    </md-select>
+                </md-grid-tile>
+
+
+            </md-grid-list>
+
+            <md-grid-list cols='2' rowHeight='fit' class='article-description'>
+                <md-grid-tile colspan='2' rowspan='1'>
+                    <md-form-field>
+                        <textarea mdInput class='article-textarea' placeholder='Description'></textarea>
+                    </md-form-field>
+                </md-grid-tile>
+                <md-grid-tile colspan='2'>
+                    <button md-raised-button color='primary' (click)='saveGoods()'>Add goods</button>
+                </md-grid-tile>
+            </md-grid-list>
+
+        </form>
+    </md-expansion-panel>
+
+    <!-- Administration-->
+    <md-expansion-panel hideToggle='true'>
+        <md-expansion-panel-header>
+            <md-panel-title>
+                Users Administration
+            </md-panel-title>
+            <md-panel-description>
+                <md-icon color='primary'>https</md-icon>
+            </md-panel-description>
+        </md-expansion-panel-header>
+
+        <md-grid-list cols='3' class='admin-section' rowHeight="3:1">
+
+            <md-grid-tile colspan='1'>
+                <button md-raised-button color='primary' (click)='findAllUsers()'>Get all Users</button>
+            </md-grid-tile>
+
+            <md-grid-tile colspan='2'>
+                <button md-raised-button color='primary' (click)='findAllEnabled()'>Get all enabled users</button>
+            </md-grid-tile>
+
+            <md-grid-tile colspan='3'>
+                <button md-raised-button color='primary' (click)='findAllDisabled()'>Get all disabled users</button>
+            </md-grid-tile>
+        </md-grid-list>
+    </md-expansion-panel>
+
+
+    <!--  All goods -->
+    <md-expansion-panel hideToggle='true'>
+        <md-expansion-panel-header>
+            <md-panel-title>
+               All goods
+            </md-panel-title>
+            <md-panel-description>
+                <md-icon color='primary'>storage</md-icon>
+            </md-panel-description>
+        </md-expansion-panel-header>
+
+        <md-grid-list cols='1' class='admin-section' rowHeight="50px">
+            <md-grid-tile colspan='1'>
+                <button md-raised-button color='primary' (click)='findAllGoods()'>Get all goods</button>
+            </md-grid-tile>
+        </md-grid-list>
+
+    </md-expansion-panel>
+
+</md-accordion>

@@ -1,7 +1,12 @@
-package main.java.by.intexsoft.adsboard.service;
+package by.intexsoft.adsboard.service;
 
-import main.java.by.intexsoft.adsboard.model.Roles;
+import javax.transaction.Transactional;
+
+import by.intexsoft.adsboard.model.Roles;
 
 public interface RolesService  extends AbstractEntityService<Roles>{
+
+	@Transactional
+	Roles findByRole(String role);
 
 }

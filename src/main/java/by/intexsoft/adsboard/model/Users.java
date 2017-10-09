@@ -1,4 +1,4 @@
-package main.java.by.intexsoft.adsboard.model;
+package by.intexsoft.adsboard.model;
 
 import javax.persistence.Column;
 import static javax.persistence.FetchType.EAGER;
@@ -16,6 +16,24 @@ import javax.persistence.JoinColumn;
 public class Users extends AbstractEntity {
 
 	private static final long serialVersionUID = -5740112979627892785L;
+	
+	/**
+     * Default constructor
+     */
+    public Users() {
+    }
+    
+    /**
+     * Constructor for the purposes of authentication
+     *
+     * @param user to get details of
+     */
+    public Users(Users user) {
+        this.username = user.username;
+        this.password = user.password;
+        this.enabled = user.enabled;
+        this.roles = user.roles;
+    }
 
 	@Column(name = "username")
 	public String username;
@@ -30,7 +48,6 @@ public class Users extends AbstractEntity {
 	public Boolean enabled;
 
 	@ManyToMany(fetch = EAGER)
-    //@JsonManagedReference
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),

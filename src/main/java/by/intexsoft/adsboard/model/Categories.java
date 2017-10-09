@@ -1,4 +1,4 @@
-package main.java.by.intexsoft.adsboard.model;
+package by.intexsoft.adsboard.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Column;
@@ -12,4 +12,6 @@ public class Categories extends AbstractEntity {
 
 	@Column(name = "name")
 	public String name;
+	
+	
 }

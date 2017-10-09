@@ -1,0 +1,22 @@
+
+<md-toolbar class='header'>
+    <button md-raised-button color='primary' routerLink='/goods'>Main page</button>
+    <button md-raised-button color='primary' routerLink='/workspace'>Workspace</button>
+    <button md-raised-button color='primary' [mdMenuTriggerFor]="categoriesMenu">Categories</button>
+    <md-menu #categoriesMenu="mdMenu">
+        <button md-menu-item routerLink='/goods'>Car</button>
+    </md-menu>
+    <button *ngIf='!isLoggedIn()' color='primary' md-raised-button routerLink='/login'>Log in</button>
+    <button *ngIf='!isLoggedIn()' color='primary' md-raised-button routerLink='/signup'>Sign up</button>
+    <button *ngIf='isLoggedIn()' color='primary' md-raised-button routerLink='/login' (click)='logout()'>Log out</button>
+</md-toolbar>
+
+<main>
+    <router-outlet></router-outlet>
+</main>
+<md-toolbar class='footer'>
+    <md-menu #langMenu='mdMenu'>
+        <button md-menu-item (click)="switchLanguage('en')">English</button>
+        <button md-menu-item (click)="switchLanguage('ru')">Russian</button>
+    </md-menu>
+</md-toolbar>

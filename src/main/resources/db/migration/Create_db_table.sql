@@ -4,7 +4,6 @@ CREATE SEQUENCE cities_seq INCREMENT BY 1 MINVALUE 1 NO MAXVALUE START WITH 1;
 CREATE SEQUENCE categories_seq INCREMENT BY 1 MINVALUE 1 NO MAXVALUE START WITH 1;
 CREATE SEQUENCE goods_seq INCREMENT BY 1 MINVALUE 1 NO MAXVALUE START WITH 1;
 
-
 CREATE TABLE users (
 	id integer DEFAULT NEXTVAL('users_seq') UNIQUE,
 	username varchar(100) NOT NULL UNIQUE,
@@ -14,8 +13,6 @@ CREATE TABLE users (
 	CONSTRAINT users_pk PRIMARY KEY (id)
 );
 
-
-
 CREATE TABLE roles (
 	id integer DEFAULT NEXTVAL('roles_seq') UNIQUE,
 	name varchar(100) NOT NULL UNIQUE,
@@ -23,23 +20,17 @@ CREATE TABLE roles (
 	CONSTRAINT roles_pk PRIMARY KEY (id)
 );
 
-
-
 CREATE TABLE cities (
 	id integer DEFAULT NEXTVAL('cities_seq') UNIQUE,
 	name varchar(100) NOT NULL,
 	CONSTRAINT cities_pk PRIMARY KEY (id)
 );
 
-
-
-
 CREATE TABLE categories (
 	id integer DEFAULT NEXTVAL('categories_seq') UNIQUE,
 	name varchar(100) NOT NULL,
 	CONSTRAINT categories_pk PRIMARY KEY (id)
 );
-
 
 CREATE TABLE goods (
 	id integer DEFAULT NEXTVAL('goods_seq') UNIQUE,
@@ -57,8 +48,6 @@ CREATE TABLE goods (
 	FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
-
-
 CREATE TABLE users_roles (
 	user_id integer NOT NULL,
 	role_id integer NOT NULL,
@@ -66,4 +55,3 @@ CREATE TABLE users_roles (
 	FOREIGN KEY (user_id) REFERENCES users(id),
 	FOREIGN KEY (role_id) REFERENCES roles(id)
 );
-

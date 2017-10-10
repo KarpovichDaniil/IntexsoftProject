@@ -20,13 +20,13 @@ public class Roles extends AbstractEntity implements GrantedAuthority {
 
 	private static final long serialVersionUID = -2131224364992410235L;
 	
+	@Column(name = "name")
+	public String name;
+	
     @Override
     public String getAuthority() {
         return this.name;
     }
-	
-	@Column(name = "name")
-	public String name;
 
 	@Column(name = "description")
 	public String description;

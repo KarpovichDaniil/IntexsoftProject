@@ -2,6 +2,7 @@ package by.intexsoft.adsboard.service.impl;
 
 import by.intexsoft.adsboard.model.CustomUserDetails;
 import by.intexsoft.adsboard.service.UsersService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,8 +16,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
+	private final UsersService userService;
+	
 	@Autowired
-	private UsersService userService;
+    public CustomUserDetailsServiceImpl(UsersService userService) {
+        this.userService = userService;
+    }
 
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {

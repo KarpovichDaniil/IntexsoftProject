@@ -1,5 +1,6 @@
 package by.intexsoft.adsboard.service.impl;
 
+import by.intexsoft.adsboard.controller.UsersController;
 import by.intexsoft.adsboard.service.AuthenticationService;
 import by.intexsoft.adsboard.service.UsersService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -7,6 +8,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import ch.qos.logback.classic.Logger;
+
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -32,15 +38,27 @@ import static io.jsonwebtoken.SignatureAlgorithm.HS256;
 @PropertySource("classpath:security.properties")
 public class AuthenticationServiceImpl implements AuthenticationService {
 
-    private static final SignatureAlgorithm SIGNATURE_ALGORITHM = HS256;
-    private static final long REFRESH_TIME = 600000;
-    private static final String SECRET_WORD = "hello";
-    private static final String JWT_PREFIX = "Bearer";
-    private static final String AUTH_HEADER = "Authorization";
-    private static final String CONTENT_TYPE = "application/json";
+	private static final SignatureAlgorithm SIGNATURE_ALGORITHM = HS256;
+    private static Logger LOGGER = (Logger) LoggerFactory.getLogger(UsersController.class);
 
-    UsersService userService = new UsersServiceImpl();
+    @Value("${jwt.refresh_time}")
+    private long REFRESH_TIME;
+    @Value("${jwt.secret_word}")
+    private String SECRET_WORD;
+    @Value("${jwt.prefix}")
+    private String JWT_PREFIX;
+    @Value("${jwt.auth_header}")
+    private String AUTH_HEADER;
+    @Value("${jwt.content_type}")
+    private String CONTENT_TYPE;
 
+    private final UsersService usersService;
+
+    @Autowired
+    public AuthenticationServiceImpl(UsersService usersService) {
+        this.usersService = usersService;
+    }
+    
     @Override
     public void provideTokenAuthentication(HttpServletResponse response, Authentication authentication) {
         String username = authentication.getName();
@@ -62,7 +80,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         try {
             jsonString = objectMapper.writeValueAsString(authorities);
         } catch (JsonProcessingException exception) {
-            //TODO: insert logger here;
+        	 LOGGER.error("Error occurred while processing JSON!");
         }
         return jsonString;
     }
@@ -77,7 +95,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 authentication = new UsernamePasswordAuthenticationToken(getUsernameFromJWT(token), null,
                         AuthorityUtils.commaSeparatedStringToAuthorityList(String.join(",", getAuthoritiesFromJWT(token))));
             } catch (NullPointerException exc) {
-                System.out.print("A JSON Web Token verification error occurred.");
+            	LOGGER.error("A JSON Web Token verification error occurred.");
             }
         }
         return authentication;
@@ -113,7 +131,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             writer.print(infoToAttach);
             writer.flush();
         } catch (IOException exception) {
-            //TODO: insert logger here;
+        	LOGGER.error("An error occurred while writing authority information into response object");
         }
     }
 }

@@ -1,4 +1,4 @@
-export class Categories {
+export default class Categories {
 	id: number;
 	name:string;
 }

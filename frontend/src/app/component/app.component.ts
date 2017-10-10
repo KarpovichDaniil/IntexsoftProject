@@ -2,7 +2,6 @@ import {Component, Inject} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
 import {IAuthenticationService} from "../service/iauthentication.service";
 import {Router} from "@angular/router";
-import {Categories} from "../model/categories"
 
 @Component({
     selector: 'body',
@@ -10,8 +9,6 @@ import {Categories} from "../model/categories"
     styleUrls: ['../../assets/style/app.component.css']
 })
 export class AppComponent {
-
-    categories: Categories[];
 
     constructor(@Inject('authenticationService') private authenticationService: IAuthenticationService,
                 private router: Router,

@@ -12,6 +12,11 @@ public class AbstractEntityServiceImpl<T extends AbstractEntity> implements Abst
 
 	@Autowired
 	private JpaRepository<T, Long> repository;
+	
+	@Autowired
+	public AbstractEntityServiceImpl(JpaRepository<T, Long> repository) {
+		this.repository = repository;
+	}
 
 	@Override
 	public List<T> findAll() {

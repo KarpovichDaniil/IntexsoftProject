@@ -2,7 +2,7 @@ package by.intexsoft.adsboard.security.filter;
 
 import by.intexsoft.adsboard.service.AuthenticationService;
 
-import by.intexsoft.adsboard.service.impl.AuthenticationServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
@@ -16,18 +16,19 @@ import java.io.IOException;
 
 public class AuthenticationFilter extends GenericFilterBean {
 
-    private AuthenticationService authenticationService = new AuthenticationServiceImpl();
+	private final AuthenticationService authenticationService;
 
-    @Override
-    public void doFilter(ServletRequest request,
-                         ServletResponse response,
-                         FilterChain filterChain)
-            throws IOException, ServletException {
+	@Autowired
+	public AuthenticationFilter(AuthenticationService authenticationService) {
+		this.authenticationService = authenticationService;
+	}
 
-        Authentication authentication = authenticationService
-                .verifyTokenAuthentication((HttpServletRequest) request);
-        SecurityContextHolder.getContext()
-                .setAuthentication(authentication);
-        filterChain.doFilter(request, response);
-    }
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
+			throws IOException, ServletException {
+
+		Authentication authentication = authenticationService.verifyTokenAuthentication((HttpServletRequest) request);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		filterChain.doFilter(request, response);
+	}
 }

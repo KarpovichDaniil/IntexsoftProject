@@ -2,8 +2,9 @@ package by.intexsoft.adsboard.security.filter;
 
 import by.intexsoft.adsboard.model.AccountAuthorities;
 import by.intexsoft.adsboard.service.AuthenticationService;
-import by.intexsoft.adsboard.service.impl.AuthenticationServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,23 +23,25 @@ import java.util.Collections;
  */
 public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 
-	AuthenticationService authenticationService = new AuthenticationServiceImpl();
+	private final AuthenticationService authenticationService;
 
-	public LoginFilter(String defaultFilterProcessesUrl, AuthenticationManager authManager) {
-
+	@Autowired
+	public LoginFilter(String defaultFilterProcessesUrl, AuthenticationManager authManager,
+			AuthenticationService authenticationService) {
 		super(defaultFilterProcessesUrl);
-		setAuthenticationManager(authManager);
+		this.setAuthenticationManager(authManager);
+		this.authenticationService = authenticationService;
 	}
 
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException, IOException, ServletException {
 
-		AccountAuthorities credentials = new ObjectMapper().readValue(request.getInputStream(),
+		AccountAuthorities authorities = new ObjectMapper().readValue(request.getInputStream(),
 				AccountAuthorities.class);
 
 		return getAuthenticationManager().authenticate(new UsernamePasswordAuthenticationToken(
-				credentials.getUsername(), credentials.getPassword(), Collections.emptyList()));
+				authorities.getUsername(), authorities.getPassword(), Collections.emptyList()));
 	}
 
 	@Override

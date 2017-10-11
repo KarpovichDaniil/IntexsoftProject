@@ -20,7 +20,6 @@ import ch.qos.logback.classic.Logger;
 public class UsersController {
 	private static Logger logger = (Logger) LoggerFactory.getLogger(UsersController.class.getName());
 
-	@Autowired
 	private final UsersService usersService;
 
 	@Autowired

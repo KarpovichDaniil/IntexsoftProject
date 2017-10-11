@@ -10,8 +10,7 @@ import by.intexsoft.adsboard.service.AbstractEntityService;
 
 public class AbstractEntityServiceImpl<T extends AbstractEntity> implements AbstractEntityService<T> {
 
-	@Autowired
-	private JpaRepository<T, Long> repository;
+	private final JpaRepository<T, Long> repository;
 	
 	@Autowired
 	public AbstractEntityServiceImpl(JpaRepository<T, Long> repository) {

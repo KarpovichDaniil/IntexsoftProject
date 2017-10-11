@@ -15,7 +15,7 @@ import by.intexsoft.adsboard.service.impl.UsersServiceImpl;
 @Configuration
 @EnableWebMvc
 @ComponentScan("by.intexsoft.adsboard.controller")
-public class DispatcherServletContextConfig extends ApplicationDataConfig{
+public class DispatcherServletContextConfig{
 
 	/**
 	 * @return instance of a UsersServiceImpl class

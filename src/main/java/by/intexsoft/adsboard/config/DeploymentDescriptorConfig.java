@@ -7,7 +7,7 @@ public class DeploymentDescriptorConfig extends
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{ApplicationDataConfig.class};
+        return new Class<?>[]{WebSecurityConfiguration.class, ApplicationDataConfig.class};
     }
 
    @Override

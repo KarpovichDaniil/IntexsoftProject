@@ -22,10 +22,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableTransactionManagement
-@ComponentScan("by.intexsoft.adsboard.service")
+@ComponentScan(basePackages = {"by.intexsoft.adsboard.service", "by.intexsoft.application.security"})
 @EnableJpaRepositories("by.intexsoft.adsboard.repository")
 @PropertySource("classpath:app.properties")
+@EnableTransactionManagement
 public class ApplicationDataConfig {
 	@Value("${db.driver}")
 	private String driverClassName;

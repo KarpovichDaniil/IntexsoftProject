@@ -9,10 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "users")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Users extends AbstractEntity {
 
 	private static final long serialVersionUID = -5740112979627892785L;
@@ -39,6 +45,7 @@ public class Users extends AbstractEntity {
 	public String username;
 	
 	@Column(name = "password")
+	@JsonIgnore
 	public String password;
 	
 	@Column(name = "email")
@@ -54,4 +61,14 @@ public class Users extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
 	public List<Roles> roles;
+	
+	@JsonIgnore
+    public String getPassword() {
+        return password;
+    }
+
+    @JsonProperty
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

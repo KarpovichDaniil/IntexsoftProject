@@ -22,7 +22,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan(basePackages = {"by.intexsoft.adsboard.service", "by.intexsoft.application.security"})
+@ComponentScan(basePackages = {"by.intexsoft.adsboard.service", "by.intexsoft.adsboard.security"})
 @EnableJpaRepositories("by.intexsoft.adsboard.repository")
 @PropertySource("classpath:app.properties")
 @EnableTransactionManagement

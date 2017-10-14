@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "categories")
-public class Categories extends AbstractEntity {
+public class Category extends AbstractEntity {
 
 	private static final long serialVersionUID = -2647633542363434741L;
 

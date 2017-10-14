@@ -1,12 +1,12 @@
 <md-card>
     <div class='icon-container'>
-        <md-icon color='accent' class='person_add'>person_add</md-icon>
+        <md-icon color='accent'>person_add</md-icon>
     </div>
     <md-card-subtitle>Ads Board</md-card-subtitle>
     <md-card-title>Registration Form</md-card-title>
     <md-error class="mat-error" *ngIf='errorMessage'>{{errorMessage}}</md-error>
     <md-card-content>
-        <form *ngIf='!submitted' [formGroup]='signupFormControl' (ngSubmit)='register()' #loginForm='ngForm'>
+        <form *ngIf='!submitted' [formGroup]='signupFormControl' (ngSubmit)='register()' #signupForm='ngForm'>
             <md-form-field>
                 <input mdInput formControlName='validName' type='text' placeholder='Login' required
                        [(ngModel)]='newUser.username' name='newUser.username'>
@@ -24,7 +24,7 @@
                     Password is required
                 </md-error>
                 <md-error *ngIf='signupFormControl.controls["validPassword"].errors?.minlength'>
-                    Length must be at least 3 symbols
+                    Length must be at least 4 symbols
                 </md-error>
             </md-form-field>
             <md-form-field>

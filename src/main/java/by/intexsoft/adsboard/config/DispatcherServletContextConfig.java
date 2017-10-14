@@ -6,11 +6,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import by.intexsoft.adsboard.model.Users;
-import by.intexsoft.adsboard.repository.UsersRepository;
-import by.intexsoft.adsboard.service.RolesService;
-import by.intexsoft.adsboard.service.UsersService;
-import by.intexsoft.adsboard.service.impl.UsersServiceImpl;
+import by.intexsoft.adsboard.model.User;
+import by.intexsoft.adsboard.repository.UserRepository;
+import by.intexsoft.adsboard.service.RoleService;
+import by.intexsoft.adsboard.service.UserService;
+import by.intexsoft.adsboard.service.impl.UserServiceImpl;
 
 @Configuration
 @EnableWebMvc
@@ -18,13 +18,13 @@ import by.intexsoft.adsboard.service.impl.UsersServiceImpl;
 public class DispatcherServletContextConfig{
 
 	/**
-	 * @return instance of a UsersServiceImpl class
+	 * @return instance of a UserServiceImpl class
 	 */
 	 @Bean
-	    public UsersService userService(
-	            JpaRepository<Users, Long> jpaRepository,
-	            UsersRepository userRepository,
-	            RolesService roleService) {
-	        return new UsersServiceImpl(jpaRepository, userRepository, roleService);
+	    public UserService userService(
+	            JpaRepository<User, Long> jpaRepository,
+	            UserRepository userRepository,
+	            RoleService roleService) {
+	        return new UserServiceImpl(jpaRepository, userRepository, roleService);
 	    }
 }

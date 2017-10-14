@@ -1,19 +1,14 @@
 import {Component, OnInit, Inject} from "@angular/core";
 import {Router} from "@angular/router";
-import {IUsersService} from "../service/iuser.service";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
-import {Users} from "../model/user";
+import {User} from "../model/user";
 import {IAuthenticationService} from "../service/iauthentication.service";
 
 /**
- * @type {RegExp} - is used to validate provided email address
+ * @type {RegExp} - регулярное выражение, используется для проверки правильности ввода email адресса
  */
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-/**
- * Controller for sign-up form. Determines whether or not a Guest provides enough information for
- * http request
- */
 @Component({
     selector: 'signup-component',
     templateUrl: '../../assets/html/signup-form.component.html',
@@ -21,7 +16,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 })
 export class SignupFormComponent implements OnInit {
 
-    newUser: Users;
+    newUser: User;
     signupFormControl: FormGroup;
 
     errorMessage: string;
@@ -33,10 +28,10 @@ export class SignupFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.newUser = new Users();
+        this.newUser = new User();
         this.signupFormControl = new FormGroup({
-            'validName': new FormControl(this.newUser.username, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
-            'validPassword': new FormControl(this.newUser.password, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
+            'validName': new FormControl(this.newUser.username, [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
+            'validPassword': new FormControl(this.newUser.password, [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
             'validEmail': new FormControl(this.newUser.email, [Validators.pattern(EMAIL_REGEX)])
         });
     }
@@ -45,14 +40,14 @@ export class SignupFormComponent implements OnInit {
         this.submitted = true;
         this.errorMessage = null;
 
-        let user: Users = this.newUser;
+        let user: User = this.newUser;
         this.authenticationService.register(user)
             .subscribe(result => {
                     this.router.navigate(['/'])
                 },
                 error => {
                     this.submitted = false;
-                    this.errorMessage = 'Registration failed. Try another username';
+                    this.errorMessage = 'Failed';
                 });
     }
 }

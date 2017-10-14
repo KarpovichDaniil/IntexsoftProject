@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 
-import {Users} from "../model/user";
+import {User} from "../model/user";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {IUsersService} from "../service/iuser.service";
 
@@ -12,7 +12,7 @@ import {IUsersService} from "../service/iuser.service";
 })
 export class UserDetailComponent implements OnInit {
 
-    user: Users;
+    user: User;
 
     constructor(@Inject("userService") private userService: IUsersService,
                 private route: ActivatedRoute,
@@ -26,7 +26,7 @@ export class UserDetailComponent implements OnInit {
     getOne(): void {
         this.route.paramMap
             .switchMap((params: ParamMap) => this.userService.getOne(+params.get('id')))
-            .subscribe((user: Users) => this.user = user);
+            .subscribe((user: User) => this.user = user);
     }
 
     goBack(): void {

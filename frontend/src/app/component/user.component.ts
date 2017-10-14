@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 
-import {Users} from "../model/user";
+import {User} from "../model/user";
 import {Router} from "@angular/router";
 import {IUsersService} from "../service/iuser.service";
 
@@ -14,8 +14,8 @@ import {IUsersService} from "../service/iuser.service";
 })
 export class UserComponent implements OnInit {
 
-    selectedUser: Users;
-    users: Users[]=[];
+    selectedUser: User;
+    users: User[]=[];
 
 
     constructor(@Inject('userService') private userService: IUsersService,
@@ -28,11 +28,11 @@ export class UserComponent implements OnInit {
 
     findAll(): void {
         this.userService.findAll()
-            .subscribe((users: Users[]) => this.users = users),
+            .subscribe((users: User[]) => this.users = users),
             (error => alert(error.message));
     }
 
-    onSelect(user: Users): void {
+    onSelect(user: User): void {
         this.selectedUser = user;
     }
 

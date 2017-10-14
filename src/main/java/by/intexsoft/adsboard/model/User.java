@@ -19,14 +19,14 @@ import javax.persistence.JoinColumn;
 @Entity
 @Table(name = "users")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Users extends AbstractEntity {
+public class User extends AbstractEntity {
 
 	private static final long serialVersionUID = -5740112979627892785L;
 	
 	/**
      * Default constructor
      */
-    public Users() {
+    public User() {
     }
     
     /**
@@ -34,7 +34,7 @@ public class Users extends AbstractEntity {
      *
      * @param user to get details of
      */
-    public Users(Users user) {
+    public User(User user) {
         this.username = user.username;
         this.password = user.password;
         this.enabled = user.enabled;
@@ -60,7 +60,7 @@ public class Users extends AbstractEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-	public List<Roles> roles;
+	public List<Role> roles;
 	
 	@JsonIgnore
     public String getPassword() {

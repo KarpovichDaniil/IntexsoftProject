@@ -1,4 +1,4 @@
-import {Users} from "../model/user";
+import {User} from "../model/user";
 import {Observable} from "rxjs";
 
 export interface IAuthenticationService {
@@ -7,7 +7,7 @@ export interface IAuthenticationService {
 
     logout(): void;
 
-    isLoggedIn(): boolean;
+    register(user: User): Observable<User>;
 
-    register(user: Users): Observable<Users>;
+    isLoggedIn(): boolean;
 }

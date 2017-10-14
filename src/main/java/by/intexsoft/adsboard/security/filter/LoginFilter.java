@@ -36,10 +36,8 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException, IOException, ServletException {
-
 		AccountAuthorities authorities = new ObjectMapper().readValue(request.getInputStream(),
 				AccountAuthorities.class);
-
 		return getAuthenticationManager().authenticate(new UsernamePasswordAuthenticationToken(
 				authorities.getUsername(), authorities.getPassword(), Collections.emptyList()));
 	}

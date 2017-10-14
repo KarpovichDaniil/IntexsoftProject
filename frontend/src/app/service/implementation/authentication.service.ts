@@ -6,7 +6,7 @@ import 'rxjs/add/observable/throw';
 import {Observable} from "rxjs/Observable";
 import {IAuthenticationService} from "../iauthentication.service";
 import Roles from "../../model/role";
-import {Users} from "../../model/user";
+import {User} from "../../model/user";
 import {BehaviorSubject} from "rxjs";
 
 const AUTH_USER_PATH: string = 'api/auth';
@@ -41,7 +41,7 @@ export class AuthenticationService implements IAuthenticationService {
         localStorage.removeItem('authorities');
     }
 
-    register(user: Users): Observable<Users> {
+    register(user: User): Observable<User> {
         return this.http.post(REGISTER_USER_PATH, JSON.stringify(user), this.getPlainRequestOptions())
             .map((response: Response) => {
                 response.json();

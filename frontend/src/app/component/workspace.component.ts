@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {IGoodsService} from "../service/igoods.service";
 import {Goods} from "../model/goods";
 import {IUsersService} from "../service/iuser.service";
-import {Users} from "../model/user";
+import {User} from "../model/user";
 import {ActivatedRoute, Router} from "@angular/router";
 @Component({
     selector: 'app-workspace',
@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from "@angular/router";
     styleUrls: ['../../assets/style/workspace.component.css']
 })
 export class WorkspaceComponent {
-    users: Users[]=[];
+    users: User[]=[];
     goods: Goods[]=[];
     singleGoods: Goods;
     selectedCategory: string;
@@ -32,7 +32,7 @@ export class WorkspaceComponent {
     }
     findAllUsers(): void {
         this.userService.findAll()
-            .subscribe((users: Users[]) => this.users = users),
+            .subscribe((users: User[]) => this.users = users),
             (error => alert(error.message));
     }
     saveGoods(): void {

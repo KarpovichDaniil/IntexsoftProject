@@ -1,7 +1,7 @@
 package by.intexsoft.adsboard.service.impl;
 
 import by.intexsoft.adsboard.model.CustomUserDetails;
-import by.intexsoft.adsboard.service.UsersService;
+import by.intexsoft.adsboard.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,10 +16,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
-	private final UsersService userService;
+	private final UserService userService;
 	
 	@Autowired
-    public CustomUserDetailsServiceImpl(UsersService userService) {
+    public CustomUserDetailsServiceImpl(UserService userService) {
         this.userService = userService;
     }
 

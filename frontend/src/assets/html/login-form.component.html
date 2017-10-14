@@ -1,6 +1,6 @@
 <md-card>
     <div class='icon-container'>
-        <md-icon color='accent' class='person'>person</md-icon>
+        <md-icon color='accent'>person</md-icon>
     </div>
     <md-card-subtitle>Ads Board</md-card-subtitle>
     <md-card-title>Login Form</md-card-title>
@@ -14,7 +14,7 @@
                     Login is required
                 </md-error>
                 <md-error *ngIf='loginFormControl.controls["validName"].errors?.minlength'>
-                    Length must be at least 3 symbols
+                    Length must be at least 4 symbols
                 </md-error>
             </md-form-field>
             <md-form-field>
@@ -25,7 +25,7 @@
                     Password is required
                 </md-error>
                 <md-error *ngIf='loginFormControl.controls["validPassword"].errors?.minlength'>
-                    Length must be at least 3 symbols
+                    Length must be at least 4 symbols
                 </md-error>
             </md-form-field>
             <md-card-actions>

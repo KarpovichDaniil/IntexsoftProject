@@ -25,11 +25,11 @@ public class Goods extends AbstractEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "city_id")
-	public Cities city;
+	public City city;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	public Users user;
+	public User user;
 	
 	@Column(name = "phone")
 	public String phone;
@@ -43,5 +43,5 @@ public class Goods extends AbstractEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "category_id")
-	public Categories category;
+	public Category category;
 }

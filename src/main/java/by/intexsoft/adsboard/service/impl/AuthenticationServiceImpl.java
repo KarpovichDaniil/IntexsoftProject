@@ -1,8 +1,8 @@
 package by.intexsoft.adsboard.service.impl;
 
-import by.intexsoft.adsboard.controller.UsersController;
+import by.intexsoft.adsboard.controller.UserController;
 import by.intexsoft.adsboard.service.AuthenticationService;
-import by.intexsoft.adsboard.service.UsersService;
+import by.intexsoft.adsboard.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
@@ -32,14 +32,13 @@ import static io.jsonwebtoken.SignatureAlgorithm.HS256;
 /**
  * Provides authentication methods for JSON Web Token
  * creation and verification
- * 
  */
 @Service
 @PropertySource("classpath:security.properties")
 public class AuthenticationServiceImpl implements AuthenticationService {
 
 	private static final SignatureAlgorithm SIGNATURE_ALGORITHM = HS256;
-    private static Logger LOGGER = (Logger) LoggerFactory.getLogger(UsersController.class);
+    private static Logger LOGGER = (Logger) LoggerFactory.getLogger(UserController.class);
 
     @Value("${jwt.refresh_time}")
     private long REFRESH_TIME;
@@ -52,11 +51,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Value("${jwt.content_type}")
     private String CONTENT_TYPE;
 
-    private final UsersService usersService;
+    private final UserService userService;
 
     @Autowired
-    public AuthenticationServiceImpl(UsersService usersService) {
-        this.usersService = usersService;
+    public AuthenticationServiceImpl(UserService userService) {
+        this.userService = userService;
     }
     
     @Override
@@ -89,13 +88,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public Authentication verifyTokenAuthentication(HttpServletRequest request) {
         Authentication authentication = null;
         String token = request.getHeader(AUTH_HEADER);
-
         if (token != null) {
             try {
                 authentication = new UsernamePasswordAuthenticationToken(getUsernameFromJWT(token), null,
                         AuthorityUtils.commaSeparatedStringToAuthorityList(String.join(",", getAuthoritiesFromJWT(token))));
             } catch (NullPointerException exc) {
-            	LOGGER.error("A JSON Web Token verification error occurred.");
+            	LOGGER.error("A JSON Web Token verification error occurred");
             }
         }
         return authentication;

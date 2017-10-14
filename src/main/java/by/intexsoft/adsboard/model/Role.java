@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "roles")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Roles extends AbstractEntity implements GrantedAuthority {
+public class Role extends AbstractEntity implements GrantedAuthority {
 
 	private static final long serialVersionUID = -2131224364992410235L;
 	
@@ -33,5 +33,5 @@ public class Roles extends AbstractEntity implements GrantedAuthority {
 	
 	@ManyToMany(fetch = LAZY, mappedBy = "roles")
 	@JsonIgnore
-    public List<Users> users;
+    public List<User> users;
 }

@@ -20,10 +20,6 @@ export class AppComponent {
         this.translate.use(language);
     }
 
-    haveAccess(): boolean {
-        return !!localStorage.getItem('roles');
-    }
-
     isLoggedIn(): boolean {
         return this.authenticationService.isLoggedIn();
     }

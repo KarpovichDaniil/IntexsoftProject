@@ -1,6 +1,7 @@
 
 package by.intexsoft.adsboard.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -38,8 +39,7 @@ public class Goods extends AbstractEntity {
 	public Double price;
 
 	@Column(name = "created_date")
-	@Temporal(TemporalType.DATE)
-	public Date created_date;
+	public Timestamp created_date;
 	
 	@ManyToOne
 	@JoinColumn(name = "category_id")

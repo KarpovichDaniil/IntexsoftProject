@@ -12,6 +12,8 @@ import {ActivatedRoute, Router, ParamMap} from "@angular/router";
 export class GoodsDetailComponent implements OnInit {
 
     singleGoods: Goods;
+    imagePath: string = './assets/image/';
+    imageFormat: string = '.jpeg';
 
     constructor(@Inject('goodsService') private goodsService: IGoodsService,
                 private route: ActivatedRoute,

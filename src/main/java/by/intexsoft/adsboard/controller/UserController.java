@@ -27,94 +27,95 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	@RequestMapping(value = "/users", method = RequestMethod.GET,  produces = "application/json")
-	public List<User> findAll() {
+	@RequestMapping(value = "/users/all", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<User>> findAll() {
 		LOGGER.info("Request was received to retrieve all users");
-		return userService.findAll();
+		return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/user/admin", method = RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<User> adminSave(@RequestBody User currentUser) {
-        LOGGER.info("Admin request was received to save a new user");
-        User obtainedUser = userService.obtainUser(currentUser.username);
-        currentUser.setPassword(obtainedUser.password);
-        User savedUser = userService.save(currentUser);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
-    }
-	
-	@RequestMapping(path = "/user/add", method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<?> add(@RequestBody User entity) {
-		LOGGER.info("Creation of a new user with username: " + entity.username + " ,password" + entity.password
-				+ " ,email" + entity.email + " and enabled" + entity.enabled);
-		try {
-			return new ResponseEntity<User>(userService.save(entity), HttpStatus.CREATED);
-		} catch (Exception e) {
-			LOGGER.error("Error while saving new user with username: " + entity.username + " ,password"
-					+ entity.password + " ,email" + entity.email + " or enabled" + entity.enabled);
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	public ResponseEntity<User> adminSave(@RequestBody User currentUser) {
+		LOGGER.info("Admin request was received to save a new user");
+		User obtainedUser = userService.obtainUser(currentUser.username);
+		currentUser.setPassword(obtainedUser.password);
+		User savedUser = userService.save(currentUser);
+		return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+	}
+
+	@RequestMapping(value = "/user", method = RequestMethod.POST, consumes = "application/json")
+	public ResponseEntity<User> save(@RequestBody User currentUser) {
+		LOGGER.info("Request was received to save a new user");
+		User obtainedUser = userService.obtainUser(currentUser.username);
+		if (checkForPasswordEquality(obtainedUser, currentUser)) {
+			LOGGER.info("Addition password comparison succeeded");
+			obtainedUser = userService.save(currentUser);
+			return new ResponseEntity<>(obtainedUser, HttpStatus.OK);
+		} else {
+			LOGGER.warn("Provided credentials were incorrect");
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 
 	@RequestMapping(value = "/users/{enabled}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<User> findAll(@PathVariable("enabled") boolean enabled) {
-        LOGGER.info("Request was received to retrieve users starting from page {} with size {}");
-        User enabledUser = userService.findByEnabled(enabled);
-//fix
-        if (enabledUser != null) {
-            LOGGER.info("Request to retrieve enabled users starting from page {} with size {} succeed");
-            return new ResponseEntity<>(enabledUser, HttpStatus.CREATED);
-        } else {
-            LOGGER.warn("Request to retrieve enabled users starting from page {} with size {} failed");
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-	
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET,  produces = "application/json")
+	public ResponseEntity<User> findAll(@PathVariable("enabled") boolean enabled) {
+		LOGGER.info("Request was received to retrieve users starting from page {} with size {}");
+		User enabledUser = userService.findByEnabled(enabled);
+		// fix
+		if (enabledUser != null) {
+			LOGGER.info("Request to retrieve enabled users starting from page {} with size {} succeed");
+			return new ResponseEntity<>(enabledUser, HttpStatus.CREATED);
+		} else {
+			LOGGER.warn("Request to retrieve enabled users starting from page {} with size {} failed");
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = "application/json")
 	public User findOne(@PathVariable("id") Long id) {
 		LOGGER.info("Request was received to find a single user {}", id);
 		return userService.findOne(id);
 	}
-	
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE, produces = "application/json")
-    public ResponseEntity<?> delete(@PathVariable("id") long id) {
-        LOGGER.info("Request was received to delete a single user {}", id);
-        try {
-            userService.deleteById(id);
-            LOGGER.info("User {} has been deleted successful", id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (IllegalArgumentException ex) {
-            LOGGER.warn("Error occurred while deleting a user {}", id);
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-	
-	@RequestMapping(value = "/user/current", method = RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<User> obtainUser(@RequestBody User currentUser) {
-        LOGGER.info("Request was received to obtain user's personal information");
-        User obtainedUser = userService.obtainUser(currentUser.username);
-        if (checkForPasswordEquality(obtainedUser, currentUser)) {
-            LOGGER.info("Personal information was obtained");
-            return new ResponseEntity<>(obtainedUser, HttpStatus.OK);
-        } else {
-            LOGGER.warn("Provided credentials were incorrect");
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
 
-    private boolean checkForPasswordEquality(User obtainedUser, User currentUser) {
-        return obtainedUser.password.equals(currentUser.password);
-    }
-    
-    @RequestMapping(value = "/register", method = RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<User> register(@RequestBody User user) {
-        LOGGER.info("Request was received to create new user");
-        User createdUser = userService.register(user);
-        if (createdUser != null) {
-            LOGGER.info("New user was successfully created");
-            return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
-        } else {
-            LOGGER.warn("Request to created a new user failed");
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE, produces = "application/json")
+	public ResponseEntity<?> delete(@PathVariable("id") long id) {
+		LOGGER.info("Request was received to delete a single user {}", id);
+		try {
+			userService.deleteById(id);
+			LOGGER.info("User {} has been deleted successful", id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (IllegalArgumentException ex) {
+			LOGGER.warn("Error occurred while deleting a user {}", id);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/user/current", method = RequestMethod.POST, consumes = "application/json")
+	public ResponseEntity<User> obtainUser(@RequestBody User currentUser) {
+		LOGGER.info("Request was received to obtain user's personal information");
+		User obtainedUser = userService.obtainUser(currentUser.username);
+		if (checkForPasswordEquality(obtainedUser, currentUser)) {
+			LOGGER.info("Personal information was obtained");
+			return new ResponseEntity<>(obtainedUser, HttpStatus.OK);
+		} else {
+			LOGGER.warn("Provided credentials were incorrect");
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	private boolean checkForPasswordEquality(User obtainedUser, User currentUser) {
+		return obtainedUser.password.equals(currentUser.password);
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = "application/json")
+	public ResponseEntity<User> register(@RequestBody User user) {
+		LOGGER.info("Request was received to create new user");
+		User createdUser = userService.register(user);
+		if (createdUser != null) {
+			LOGGER.info("New user was successfully created");
+			return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+		} else {
+			LOGGER.warn("Request to created a new user failed");
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
 }

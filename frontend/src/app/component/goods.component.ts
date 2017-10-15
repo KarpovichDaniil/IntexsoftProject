@@ -11,6 +11,8 @@ export class GoodsComponent implements OnInit {
 
     errorMessage: string;
     goods: Goods[];
+    imagePath:string = './assets/image/';
+    imageFormat:string = '.jpeg';
 
     constructor(@Inject('goodsService') private goodsService: IGoodsService) {
     }

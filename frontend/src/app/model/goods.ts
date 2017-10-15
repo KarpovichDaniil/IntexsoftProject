@@ -10,6 +10,6 @@ export class Goods {
   author: User;
   phone:string;
   price: number;
-  //created_date: Date = new Date();
+  createdDate: Date;
   category: Category;
 }

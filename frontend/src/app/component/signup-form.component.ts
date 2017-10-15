@@ -32,7 +32,7 @@ export class SignupFormComponent implements OnInit {
         this.signupFormControl = new FormGroup({
             'validName': new FormControl(this.newUser.username, [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
             'validPassword': new FormControl(this.newUser.password, [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
-            'validEmail': new FormControl(this.newUser.email, [Validators.pattern(EMAIL_REGEX)])
+            'validEmail': new FormControl(this.newUser.email, [Validators.required, Validators.pattern(EMAIL_REGEX)]),
         });
     }
 
@@ -41,6 +41,7 @@ export class SignupFormComponent implements OnInit {
         this.errorMessage = null;
 
         let user: User = this.newUser;
+        this.newUser.enabled = false;
         this.authenticationService.register(user)
             .subscribe(result => {
                     this.router.navigate(['/'])

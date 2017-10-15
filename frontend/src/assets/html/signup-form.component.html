@@ -14,7 +14,7 @@
                     Login is required
                 </md-error>
                 <md-error *ngIf='signupFormControl.controls["validName"].errors?.minlength'>
-                    Length must be at least 3 symbols
+                    Length must be at least 4 symbols
                 </md-error>
             </md-form-field>
             <md-form-field>
@@ -28,14 +28,18 @@
                 </md-error>
             </md-form-field>
             <md-form-field>
-                <input mdInput formControlName='validEmail' type='email' placeholder='Email' [(ngModel)]='newUser.email'
-                       name='newUser.email'>
+                <input mdInput formControlName='validEmail' type='email' placeholder='Email' required
+                       [(ngModel)]='newUser.email' name='newUser.email'>
+                <md-error *ngIf='signupFormControl.controls["validEmail"].errors?.required'>
+                    Email is required
+                </md-error>
                 <md-error *ngIf='signupFormControl.controls["validEmail"].errors?.pattern'>
                     Wrong email address
                 </md-error>
             </md-form-field>
             <md-card-actions>
-                <button md-raised-button color='primary' type='submit' [disabled]='!loginForm.form.valid'>Sign Up</button>
+                <button md-raised-button color='primary' type='submit' [disabled]='!signupForm.form.valid'>Sign Up
+                </button>
             </md-card-actions>
         </form>
         <md-spinner *ngIf='submitted' mode='indeterminate'></md-spinner>

@@ -5,7 +5,7 @@ import {IUsersService} from "../iuser.service";
 import {Observable} from "rxjs";
 import "rxjs/add/operator/toPromise";
 
-const ALL_USERS_PATH = 'api/users';
+const ALL_USERS_PATH = 'api/users/all';
 const USER_PATH = 'api/user/';
 const USER_PATH_FOR_ADMIN = 'api/user/admin';
 const CURRENT_USER_PATH = 'api/user/current';

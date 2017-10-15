@@ -1,13 +1,16 @@
 <md-card>
     <md-card-title class='mat-h1'>{{singleGoods?.title}}</md-card-title>
-    <img md-card-image src='./assets/image/002.jpeg' alt='picture'>
+    <img md-card-image src={{imagePath+singleGoods?.id+imageFormat}}
+         onerror="this.onerror=null;this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';">
     <div class='card-footer' color='primary'>
-        <md-card-content class='mat-body'>{{singleGoods?.description}}</md-card-content>
-        <md-card-content class='mat-body'>{{singleGoods?.city.id}}</md-card-content>
-        <md-card-content class='mat-body'>{{singleGoods?.phone}}</md-card-content>
-        <md-card-content class='mat-body'>{{singleGoods?.price}}</md-card-content>
-        <md-card-content class='mat-body'>{{singleGoods?.author}}</md-card-content>
-        <md-card-content class='mat-body'>{{singleGoods?.category.id.valueOf()}}</md-card-content>
+        <md-card-content class='mat-body'><b>City: </b> {{singleGoods?.city.name}}</md-card-content>
+        <md-card-content class='mat-body'><b>Category: </b> {{singleGoods?.category.name}}</md-card-content>
+        <md-card-content class='mat-body'><b>Description: </b>
+             {{singleGoods?.description}}</md-card-content>
+        <md-card-content class='mat-body'><b>Phone: </b> {{singleGoods?.phone}}</md-card-content>
+        <md-card-content class='mat-body'><b>Price: </b> {{singleGoods?.price}}</md-card-content>
+        <md-card-content class='mat-body'><b>Author: </b> {{singleGoods?.author.username}}</md-card-content>
+        <md-card-content class='mat-body'><b>Create: </b> {{singleGoods?.createdDate.toString()}}</md-card-content>
         <div class='button-container'>
             <button md-raised-button color='primary' (click)="goBack()">Go Back</button>
         </div>

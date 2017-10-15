@@ -1,5 +1,10 @@
 export default class Role {
   id: number;
-  name: string;
+  role: string;
   description: string;
+
+    constructor(id:number, role: string) {
+        this.id = id;
+        this.role = role;
+    }
 }

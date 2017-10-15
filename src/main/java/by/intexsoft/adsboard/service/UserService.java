@@ -1,7 +1,6 @@
 package by.intexsoft.adsboard.service;
 
 import javax.transaction.Transactional;
-
 import by.intexsoft.adsboard.model.User;
 
 public interface UserService extends AbstractEntityService<User>{

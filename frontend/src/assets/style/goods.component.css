@@ -46,10 +46,16 @@ a {
         justify-content: flex-start !important;
 }
 
-
 .img img {
     width: 250px;
     border: none;
     margin: 0;
     padding: 0;
+}
+
+.max-size {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
 }

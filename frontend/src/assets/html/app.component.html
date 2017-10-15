@@ -1,20 +1,21 @@
-
 <md-toolbar class='header'>
-    <button md-raised-button color='primary' routerLink='/goods'>Main page</button>
-    <button md-raised-button color='primary' routerLink='/workspace'>Workspace</button>
+    <button md-raised-button color='primary' routerLink='/goods'>{{'Main Page' | translate}}</button>
+    <button md-raised-button color='primary' routerLink='/workspace' *ngIf='isLoggedIn()'>{{'Workspace' | translate}}</button>
     <button md-raised-button color='primary' [mdMenuTriggerFor]="categoriesMenu">Categories</button>
     <md-menu #categoriesMenu="mdMenu">
         <button md-menu-item routerLink='/goods'>Car</button>
     </md-menu>
-    <button *ngIf='!isLoggedIn()' color='primary' md-raised-button routerLink='/login'>Log in</button>
-    <button *ngIf='!isLoggedIn()' color='primary' md-raised-button routerLink='/signup'>Sign up</button>
-    <button *ngIf='isLoggedIn()' color='primary' md-raised-button routerLink='/login' (click)='logout()'>Log out</button>
+    <button *ngIf='!isLoggedIn()' color='primary' md-raised-button routerLink='/signup'>{{'Sign_Up' | translate}}</button>
+    <button *ngIf='!isLoggedIn()' color='primary' md-raised-button routerLink='/login'>{{'Log_In' | translate}}</button>
+    <button *ngIf='isLoggedIn()' color='primary' md-raised-button (click)='logout()'>{{'Log_Out' | translate}}</button>
 </md-toolbar>
-
 <main>
     <router-outlet></router-outlet>
 </main>
 <md-toolbar class='footer'>
+    <button md-raised-button md-icon-button color='primary' [mdMenuTriggerFor]='langMenu'>
+        <md-icon>language</md-icon>
+    </button>
     <md-menu #langMenu='mdMenu'>
         <button md-menu-item (click)="switchLanguage('en')">English</button>
         <button md-menu-item (click)="switchLanguage('ru')">Russian</button>

@@ -41,7 +41,7 @@ export class LoginFormComponent implements OnInit {
                 },
                 error => {
                     this.submitted = false;
-                    this.errorMessage = 'Incorrect username or password';
+                    this.errorMessage = 'Incorrect username or password. If it correct wait some time, when administrator activate your account!';
                 });
     }
 }

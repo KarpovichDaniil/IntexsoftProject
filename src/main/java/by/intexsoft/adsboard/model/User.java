@@ -52,7 +52,7 @@ public class User extends AbstractEntity {
 	public String email;
 	
 	@Column(name = "enabled")
-	public Boolean enabled;
+	public boolean enabled;
 
 	@ManyToMany(fetch = EAGER)
     @JoinTable(

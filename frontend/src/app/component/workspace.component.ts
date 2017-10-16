@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {IGoodsService} from "../service/igoods.service";
 import {Goods} from "../model/goods";
 import {IUsersService} from "../service/iuser.service";
-import {User} from "../model/user";
+import User from "../model/user";
 import {ActivatedRoute, Router} from "@angular/router";
 @Component({
     selector: 'app-workspace',

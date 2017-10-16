@@ -1,6 +1,6 @@
 import Role from './role';
 
-export class User {
+export default class User {
   id: number;
   username: string;
   password: string;

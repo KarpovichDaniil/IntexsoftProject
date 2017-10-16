@@ -1,16 +1,17 @@
 <md-card>
     <md-card-title class='mat-h1'>{{singleGoods?.title}}</md-card-title>
     <img md-card-image src={{imagePath+singleGoods?.id+imageFormat}}
-         onerror="this.onerror=null;this.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';">
+         onerror="this.src = 'https://redsclubstore.shopdesq.com/assets/shopdesq/imagenotfoundthumb.jpg';">
     <div class='card-footer' color='primary'>
-        <md-card-content class='mat-body'><b>City: </b> {{singleGoods?.city.name}}</md-card-content>
-        <md-card-content class='mat-body'><b>Category: </b> {{singleGoods?.category.name}}</md-card-content>
-        <md-card-content class='mat-body'><b>Description: </b>
-             {{singleGoods?.description}}</md-card-content>
-        <md-card-content class='mat-body'><b>Phone: </b> {{singleGoods?.phone}}</md-card-content>
-        <md-card-content class='mat-body'><b>Price: </b> {{singleGoods?.price}}</md-card-content>
-        <md-card-content class='mat-body'><b>Author: </b> {{singleGoods?.author.username}}</md-card-content>
-        <md-card-content class='mat-body'><b>Create: </b> {{singleGoods?.createdDate.toString()}}</md-card-content>
+        <md-card-content class='mat-body'><b>Description:</b><br/>{{singleGoods?.description}}</md-card-content>
+        <pre>
+        <md-card-content class='mat-body'><b>City: </b>{{singleGoods?.city.name}}</md-card-content>
+        <md-card-content class='mat-body'><b>Category: </b>{{singleGoods?.category.name}}</md-card-content>
+        <md-card-content class='mat-body'><b>Phone: </b>{{singleGoods?.phone}}</md-card-content>
+        <md-card-content class='mat-body'><b>Price: </b>{{singleGoods?.price+' $'}}</md-card-content>
+        <md-card-content class='mat-body'><b>Author: </b>{{singleGoods?.user.username}}</md-card-content>
+        <md-card-content class='mat-body'><b>Create: </b>{{singleGoods?.created_date | date:'dd:MM:yy HH-mm-ss-Z'}}</md-card-content>
+        </pre>
         <div class='button-container'>
             <button md-raised-button color='primary' (click)="goBack()">Go Back</button>
         </div>

@@ -1,5 +1,5 @@
 import City from './city';
-import {User} from './user';
+import User from './user';
 import Category from './category';
 
 export class Goods {
@@ -7,9 +7,9 @@ export class Goods {
   title: string;
   description: string;
   city: City;
-  author: User;
+  user: User;
   phone:string;
   price: number;
-  createdDate: Date;
+  created_date: Date;
   category: Category;
 }

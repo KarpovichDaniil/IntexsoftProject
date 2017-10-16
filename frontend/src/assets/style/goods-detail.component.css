@@ -21,7 +21,6 @@ md-card-subtitle {
 md-card-content {
     display: flex;
     align-self: flex-start;
-    white-space: pre;
 }
 
 .button-container {

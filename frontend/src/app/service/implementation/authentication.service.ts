@@ -1,13 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Http, Headers, Response, RequestOptions, URLSearchParams} from '@angular/http';
+import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {Observable} from "rxjs/Observable";
 import {IAuthenticationService} from "../iauthentication.service";
-import Roles from "../../model/role";
-import {User} from "../../model/user";
-import {BehaviorSubject} from "rxjs";
+import User from "../../model/user";
 
 const AUTH_USER_PATH: string = 'api/auth';
 const REGISTER_USER_PATH = 'api/register';

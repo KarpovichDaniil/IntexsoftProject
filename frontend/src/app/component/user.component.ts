@@ -15,7 +15,8 @@ import {IUsersService} from "../service/iuser.service";
 export class UserComponent implements OnInit {
 
     selectedUser: User;
-    users: User[]=[];
+    users: User[];
+    errorMessage: string;
 
 
     constructor(@Inject('userService') private userService: IUsersService,
@@ -27,9 +28,13 @@ export class UserComponent implements OnInit {
     }
 
     findAll(): void {
-        this.userService.findAll()
-            .subscribe((users: User[]) => this.users = users),
-            (error => alert(error.message));
+        this.userService.getAll()
+            .subscribe((users: User[]) => {
+                    this.users = users;
+                },
+                error => {
+                    this.errorMessage = 'Sorry! No more goods available at the moment!';
+                });
     }
 
     onSelect(user: User): void {

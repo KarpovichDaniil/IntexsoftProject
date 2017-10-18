@@ -31,3 +31,7 @@ md-card-content {
 .button-container button:nth-child(1) {
     margin-right: auto;
 }
+
+.mat-body {
+    white-space: pre-wrap;
+}

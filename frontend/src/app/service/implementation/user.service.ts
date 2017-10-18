@@ -29,19 +29,10 @@ export class UsersService implements IUsersService {
         );
     }
 
-    private getPlainRequestOptions(): RequestOptions {
-        return new RequestOptions({
-                headers: new Headers({
-                    'Content-Type': 'application/json'
-                })
-            }
-        );
-    }
-
-    findAll(): Observable<User[]> {
+    getAll(): Observable<User[]> {
         return this.http.get(ALL_USERS_PATH, this.getAuthRequestOptions())
             .map((response: Response) => {
-            response.json()
+               return response.json();
             })
             .catch((error: any) => Observable.throw(error));
     }
@@ -79,7 +70,7 @@ export class UsersService implements IUsersService {
             .catch((error: any) => Observable.throw(error));
     }
 
-    findAllEnabled(enabled: boolean): Observable<User[]> {
+    getAllEnabled(enabled: boolean): Observable<User[]> {
         return this.http.get(ALL_USERS_PATH + '/' + enabled, this.getAuthRequestOptions())
             .map((response: Response) => {
                 return response.json().content;

@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 
 export interface IUsersService {
 
-    findAll(): Observable<User[]>;
+    getAll(): Observable<User[]>;
 
     getOne(id: number): Observable<User>;
 
@@ -14,7 +14,7 @@ export interface IUsersService {
 
     obtainUser(user: User): Observable<User>;
 
-    findAllEnabled(enabled: boolean): Observable<User[]>;
+    getAllEnabled(enabled: boolean): Observable<User[]>;
 
     deleteUser(id: number): Observable<boolean>;
 }

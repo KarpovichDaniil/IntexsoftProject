@@ -1,6 +1,6 @@
 <md-toolbar class='header'>
     <button md-raised-button color='primary' routerLink='/goods'>{{'Main Page' | translate}}</button>
-    <button md-raised-button color='primary' routerLink='/workspace' *ngIf='isLoggedIn()'>{{'Workspace' | translate}}</button>
+    <button md-raised-button color='primary' routerLink='/workspace' >{{'Workspace' | translate}}</button>
     <button md-raised-button color='primary' [mdMenuTriggerFor]="categoriesMenu">Categories</button>
     <md-menu #categoriesMenu="mdMenu">
         <button md-menu-item routerLink='/goods'>Car</button>

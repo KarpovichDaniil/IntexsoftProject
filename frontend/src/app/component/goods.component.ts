@@ -11,21 +11,28 @@ export class GoodsComponent implements OnInit {
 
     errorMessage: string;
     goods: Goods[];
-    imagePath:string = './assets/image/';
-    imageFormat:string = '.jpeg';
+    imagePath: string = './assets/image/';
+    imageFormat: string = '.jpeg';
 
     constructor(@Inject('goodsService') private goodsService: IGoodsService) {
     }
 
     ngOnInit(): void {
-        this.getAll();
+        this.goodsService.getAll()
+            .subscribe((goods: Goods[]) => {
+                    this.goods = goods;
+                },
+                error => {
+                    this.errorMessage = 'Sorry! No more goods available at the moment!';
+                });
+        /*this.getAll();*/
     }
 
-    getAll(): void {
-        this.goodsService.getAllGoods()
-            .then((goods: Goods[]) => this.goods = goods);
-    }
-
+    /*   getAll(): void {
+          this.goodsService.getAllGoods()
+              .then((goods: Goods[]) => this.goods = goods);
+      }
+  */
     /*this.goodsService.findAll()
         .subscribe((goods: Goods[]) => {
                 this.goods = goods;

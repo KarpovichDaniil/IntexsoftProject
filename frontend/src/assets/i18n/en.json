@@ -3,5 +3,8 @@
   "Workspace": "Workspace",
   "Sign_Up": "Sign Up",
   "Log_In": "Log In",
-  "Log_Out": "Log Out"
+  "Log_Out": "Log Out",
+  "Display_All_Users": "Display All Users",
+  "Display_Disabled_Users": "Display Disabled Users",
+  "Display_Enabled_Users": "Display Enabled Users"
 }

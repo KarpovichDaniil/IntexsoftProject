@@ -14,27 +14,10 @@ export class GoodsService implements IGoodsService {
     constructor(private http: Http) {
     }
 
-    getAllGoods(): Promise<Goods[]> {
+    getAll(): Observable<Goods[]> {
         return this.http.get(ALL_GOODS_PATH)
-            .toPromise()
-            .then(response =>
-            {console.log(response);
-                return response.json();})
-            .catch(error => this.errorHandle(error));
-    }
-
-    private errorHandle(error): Promise<Goods> {
-        console.log(error);
-        return null;
-    }
-
-
-
-
-    findAll(): Observable<Goods[]> {
-        return this.http.get(ALL_GOODS_PATH, this.getPlainRequestOptions())
             .map((response: Response) => {
-                response.json()
+                return response.json();
             })
             .catch((error: any) => Observable.throw(error));
     }
@@ -54,13 +37,6 @@ export class GoodsService implements IGoodsService {
                 response.json();
             })
             .catch((error: any) => Observable.throw(error));
-    }
-
-    private getUrlSearchParams(page: string, size: string): URLSearchParams {
-        let params = new URLSearchParams();
-        params.set('page', page);
-        params.set('size', size);
-        return params;
     }
 
     private getAuthRequestOptions(): RequestOptions {

@@ -3,7 +3,6 @@ import {Component, OnInit, Inject} from "@angular/core";
 import {IGoodsService} from "../service/igoods.service";
 import {ActivatedRoute, Router, ParamMap} from "@angular/router";
 
-
 @Component({
     selector: 'goods-detail',
     templateUrl: '../../assets/html/goods-detail.component.html',

@@ -1,5 +1,7 @@
 package by.intexsoft.adsboard.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import by.intexsoft.adsboard.model.User;
@@ -11,5 +13,5 @@ import by.intexsoft.adsboard.model.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 	User findByUsername(String username);
 
-	User findByEnabled(boolean enabled);
+	List<User> findByEnabled(boolean enabled);
 }

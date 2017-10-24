@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import by.intexsoft.adsboard.model.User;
@@ -14,6 +15,7 @@ import by.intexsoft.adsboard.service.impl.UserServiceImpl;
 
 @Configuration
 @EnableWebMvc
+@EnableSpringDataWebSupport
 @ComponentScan("by.intexsoft.adsboard.controller")
 public class DispatcherServletContextConfig{
 

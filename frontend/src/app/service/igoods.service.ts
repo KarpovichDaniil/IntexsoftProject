@@ -8,4 +8,6 @@ export interface IGoodsService {
     getOne(id: number): Observable<Goods>;
 
     save(goods: Goods): Observable<Goods>;
+
+    findByCategory(id: number): Observable<Goods[]>;
 }

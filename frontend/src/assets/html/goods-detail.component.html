@@ -1,7 +1,8 @@
 <md-card>
     <md-card-title class='mat-h1'>{{singleGoods?.title}}</md-card-title>
     <img md-card-image src={{imagePath+singleGoods?.id+imageFormat}}
-         onerror="this.src = 'https://redsclubstore.shopdesq.com/assets/shopdesq/imagenotfoundthumb.jpg';">
+         alt="Image not found"
+         onerror="this.onerror=null;this.src = 'http://www.vishmax.com/en/innovattive-cms/themes/themax-theme-2015/images/no-image-found.gif';">
     <div class='card-footer' color='primary'>
         <md-card-content class='mat-body'><b>Description:</b></md-card-content>
         <md-card-content class='mat-body'>{{singleGoods?.description}}</md-card-content>
@@ -10,7 +11,8 @@
         <md-card-content class='mat-body'><b>Phone: </b>{{singleGoods?.phone}}</md-card-content>
         <md-card-content class='mat-body'><b>Price: </b>{{singleGoods?.price+' $'}}</md-card-content>
         <md-card-content class='mat-body'><b>Author: </b>{{singleGoods?.user.username}}</md-card-content>
-        <md-card-content class='mat-body'><b>Create: </b>{{singleGoods?.created_date | date:'dd.MM.yy HH:mm:ss (Z)'}}</md-card-content>
+        <md-card-content class='mat-body'><b>Create: </b>{{singleGoods?.created_date | date:'dd.MM.yy HH:mm:ss (Z)'}}
+        </md-card-content>
         <div class='button-container'>
             <button md-raised-button color='primary' (click)="goBack()">Go Back</button>
         </div>

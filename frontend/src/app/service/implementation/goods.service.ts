@@ -1,12 +1,11 @@
 import {Injectable} from "@angular/core";
-import {Headers, Http, RequestOptions, Response, URLSearchParams} from "@angular/http";
+import {Headers, Http, RequestOptions, Response} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {Observable} from "rxjs";
 import {IGoodsService} from "../igoods.service";
 import {Goods} from "../../model/goods";
 
-const ALL_GOODS_PATH = 'api/goods';
-const ONE_GOODS_PATH = 'api/goods';
+const GOODS_PATH = 'api/goods';
 
 @Injectable()
 export class GoodsService implements IGoodsService {
@@ -15,7 +14,7 @@ export class GoodsService implements IGoodsService {
     }
 
     getAll(): Observable<Goods[]> {
-        return this.http.get(ALL_GOODS_PATH)
+        return this.http.get(GOODS_PATH)
             .map((response: Response) => {
                 return response.json();
             })
@@ -23,7 +22,7 @@ export class GoodsService implements IGoodsService {
     }
 
     getOne(id: number): Observable<Goods> {
-        const url = `${ONE_GOODS_PATH}/${id}`;
+        const url = `${GOODS_PATH}/${id}`;
         return this.http.get(url, this.getPlainRequestOptions())
             .map((response: Response) => {
                 return response.json();
@@ -32,9 +31,17 @@ export class GoodsService implements IGoodsService {
     }
 
     save(goods: Goods): Observable<Goods> {
-        return this.http.post(ONE_GOODS_PATH, JSON.stringify(goods), this.getAuthRequestOptions())
+        return this.http.post(GOODS_PATH, JSON.stringify(goods), this.getAuthRequestOptions())
             .map((response: Response) => {
                 response.json();
+            })
+            .catch((error: any) => Observable.throw(error));
+    }
+
+    findByCategory(id: number): Observable<Goods[]> {
+        return this.http.get('api/goods/category/' + id, this.getPlainRequestOptions())
+            .map((response: Response) => {
+                return response.json();
             })
             .catch((error: any) => Observable.throw(error));
     }

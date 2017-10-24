@@ -1,23 +1,21 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {UserComponent} from "../component/user.component";
 import {UserDetailComponent} from "../component/user-detail.component";
 import {LoginFormComponent} from "../component/login-form.component";
 import {GoodsComponent} from "../component/goods.component";
 import {SignupFormComponent} from "../component/signup-form.component";
-import {WorkspaceComponent} from "../component/workspace.component";
 import {PageNotFoundComponent} from "../component/page-not-found.component";
 import {GoodsDetailComponent} from "../component/goods-detail.component";
+import {AdminComponent} from "../component/admin.component";
+import {GoodsCreationComponent} from "../component/goods-creation.component";
+import {AdminSectionGuard} from "../guard/admin-section.guard";
+import {GoodsCreationSectionGuard} from "../guard/goods-creation-section-guard";
 
 const routes: Routes = [
     {
         path: '',
         redirectTo: 'goods',
         pathMatch: 'full'
-    },
-    {
-        path: 'users',
-        component: UserComponent
     },
     {
         path: 'login',
@@ -32,8 +30,14 @@ const routes: Routes = [
         component: SignupFormComponent
     },
     {
-        path: 'workspace',
-        component: WorkspaceComponent,
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [AdminSectionGuard]
+    },
+    {
+        path: 'create',
+        component: GoodsCreationComponent,
+        canActivate: [GoodsCreationSectionGuard]
     },
     {
         path: 'user/:id',

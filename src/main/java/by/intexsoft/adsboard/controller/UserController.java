@@ -27,10 +27,10 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	@RequestMapping(value = "/users/all", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<User>> findAll() {
+	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
+	public List<User> findAll() {
 		LOGGER.info("Request was received to retrieve all users");
-		return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
+		return userService.findAll();
 	}
 
 	@RequestMapping(value = "/user/admin", method = RequestMethod.POST, consumes = "application/json")
@@ -57,23 +57,24 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/users/{enabled}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<User> findAll(@PathVariable("enabled") boolean enabled) {
-		LOGGER.info("Request was received to retrieve users starting from page {} with size {}");
-		User enabledUser = userService.findByEnabled(enabled);
+	public ResponseEntity<List<User>> findAll(@PathVariable("enabled") boolean enabled) {
+		LOGGER.info("Request was received to retrieve users");
+		List<User> enabledUser = userService.findByEnabled(enabled);
 		// fix
 		if (enabledUser != null) {
-			LOGGER.info("Request to retrieve enabled users starting from page {} with size {} succeed");
+			LOGGER.info("Request to retrieve enabled users succeed");
 			return new ResponseEntity<>(enabledUser, HttpStatus.CREATED);
 		} else {
-			LOGGER.warn("Request to retrieve enabled users starting from page {} with size {} failed");
+			LOGGER.warn("Request to retrieve enabled users failed");
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = "application/json")
-	public User findOne(@PathVariable("id") Long id) {
-		LOGGER.info("Request was received to find a single user {}", id);
-		return userService.findOne(id);
+	public ResponseEntity<User> findOne(@PathVariable("id") long id) {
+		User currentUser = userService.findOne(id);
+        LOGGER.info("Request was received to find a single user {}", id);
+        return new ResponseEntity<>(currentUser, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE, produces = "application/json")

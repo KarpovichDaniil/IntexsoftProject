@@ -1,9 +1,11 @@
 <md-toolbar class='header'>
     <button md-raised-button color='primary' routerLink='/goods'>{{'Main Page' | translate}}</button>
-    <button md-raised-button color='primary' routerLink='/workspace' >{{'Workspace' | translate}}</button>
-    <button md-raised-button color='primary' [mdMenuTriggerFor]="categoriesMenu">Categories</button>
-    <md-menu #categoriesMenu="mdMenu">
-        <button md-menu-item routerLink='/goods'>Car</button>
+    <button md-raised-button color='primary' [disabled]='!isLoggedIn()' [mdMenuTriggerFor]='workspaceMenu'>
+        {{'Workspace' | translate}}
+    </button>
+    <md-menu #workspaceMenu='mdMenu'>
+        <button md-menu-item routerLink='/create'>{{'Goods_Creation_Section' | translate}}</button>
+        <button md-menu-item routerLink='/admin'>{{'Administration_Section' | translate}}</button>
     </md-menu>
     <button *ngIf='!isLoggedIn()' color='primary' md-raised-button routerLink='/signup'>{{'Sign_Up' | translate}}</button>
     <button *ngIf='!isLoggedIn()' color='primary' md-raised-button routerLink='/login'>{{'Log_In' | translate}}</button>

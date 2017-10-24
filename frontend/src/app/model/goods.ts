@@ -1,5 +1,5 @@
 import City from './city';
-import User from './user';
+import {User} from './user';
 import Category from './category';
 
 export class Goods {

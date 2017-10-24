@@ -5,7 +5,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {Observable} from "rxjs/Observable";
 import {IAuthenticationService} from "../iauthentication.service";
-import User from "../../model/user";
+import {User} from "../../model/user";
 
 const AUTH_USER_PATH: string = 'api/auth';
 const REGISTER_USER_PATH = 'api/register';
@@ -22,10 +22,14 @@ export class AuthenticationService implements IAuthenticationService {
             .map((response: Response) => {
                 let token: string = response.headers.get('Authorization').slice(7);
                 let authorities: string[] = JSON.parse(response.text());
+                let currentUser: string = username;
+
                 console.log(authorities);
+                console.log(currentUser);
                 if (token) {
                     localStorage.setItem('token', JSON.stringify(token));
                     localStorage.setItem('authorities', response.text());
+                    localStorage.setItem('currentUser', username);
                     return true;
                 } else {
                     return false;
@@ -37,6 +41,7 @@ export class AuthenticationService implements IAuthenticationService {
     logout(): void {
         localStorage.removeItem('token');
         localStorage.removeItem('authorities');
+        localStorage.removeItem('currentUser');
     }
 
     register(user: User): Observable<User> {

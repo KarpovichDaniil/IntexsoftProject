@@ -1,0 +1,96 @@
+<md-card>
+    <md-card-header id='personal-header'>
+        <div>{{'Article_Creation_Section' | translate}}</div>
+        <md-icon color='accent'>note_add</md-icon>
+    </md-card-header>
+    <md-card-content>
+        <md-error class='header-error' *ngIf='errorMessage'>{{errorMessage | translate}}</md-error>
+
+        <form *ngIf='!submitted' class='article-creation-form' [formGroup]='goodsFormControl' (ngSubmit)='save()'
+              #goodsForm='ngForm'>
+
+            <div class='goods-title'>
+                <md-form-field>
+                    <input mdInput formControlName='validTitle' class='mat-accent' type='text'
+                           placeholder="{{'Article_Title' | translate}}" required
+                           [(ngModel)]='oneGoods.title' name='oneGoods.title'>
+                    <md-error *ngIf='goodsFormControl.controls["validTitle"].errors?.required'>
+                        {{'Article_Title_Required' | translate}}
+                    </md-error>
+                    <md-error *ngIf='goodsFormControl.controls["validTitle"].errors?.minlength'>
+                        {{'Min_5_Length' | translate}}
+                    </md-error>
+                </md-form-field>
+            </div>
+
+            <md-form-field class='article-container'>
+                <textarea formControlName='validDescription' required mdInput class='article-textarea' rows='1'
+                          maxlength='5000'
+                          [(ngModel)]='oneGoods.description' name='oneGoods.description'
+                          placeholder="{{'Short_Description' | translate}}"></textarea>
+                <md-error *ngIf='goodsFormControl.controls["validDescription"].errors?.required'>
+                    {{'Article_Description_Error' | translate}}
+                </md-error>
+                <md-error *ngIf='goodsFormControl.controls["validDescription"].errors?.minlength'>
+                    {{'Min_20_Length' | translate}}
+                </md-error>
+            </md-form-field>
+
+            <div class='desc-container'>
+                <md-form-field class='desc-container'>
+                <textarea formControlName='validPhone' required mdInput class='desc-textarea'
+                          [(ngModel)]="oneGoods.phone" name='oneGoods.phone'
+                          placeholder="Phone"></textarea>
+                    <md-error *ngIf='goodsFormControl.controls["validPhone"].errors?.required'>
+                        {{'Article_Body_Error' | translate}}
+                    </md-error>
+                    <md-error *ngIf='goodsFormControl.controls["validPhone"].errors?.minlength'>
+                        {{'Min_100_Length' | translate}}
+                    </md-error>
+                </md-form-field>
+            </div>
+
+            <div class='desc-container'>
+                <md-form-field class='desc-container'>
+                <textarea formControlName='validPrice' required mdInput class='desc-textarea'
+                          [(ngModel)]="oneGoods.price" name='oneGoods.price'
+                          placeholder="Price"></textarea>
+                    <md-error *ngIf='goodsFormControl.controls["validPrice"].errors?.required'>
+                        {{'Article_Body_Error' | translate}}
+                    </md-error>
+                    <md-error *ngIf='goodsFormControl.controls["validPrice"].errors?.minlength'>
+                        {{'Min_100_Length' | translate}}
+                    </md-error>
+                </md-form-field>
+            </div>
+
+        </form>
+
+        <div *ngIf='!submitted'>
+            Choose category:
+            <md-radio-group class="cat-radio-group"  [(ngModel)]="choosingCategory">
+                <md-radio-button class="cat-radio-button" *ngFor="let category of categories" [value]="category">{{category}}</md-radio-button>
+            </md-radio-group>
+        </div>
+
+        <div *ngIf='!submitted'>
+            Choose city:
+            <md-radio-group class="cat-radio-group"  [(ngModel)]="choosingCity">
+                <md-radio-button class="cat-radio-button" *ngFor="let city of cities" [value]="city">{{city}}</md-radio-button>
+            </md-radio-group>
+        </div>
+
+
+        <div class='spinner'>
+            <md-spinner *ngIf='submitted' mode='indeterminate'></md-spinner>
+        </div>
+
+    </md-card-content>
+
+    <md-card-footer class='mat-action-row'>
+        <button md-raised-button color='primary' [disabled]='!goodsFormControl?.valid'
+                (click)='uploadGoods()'>
+            Add Your Goods
+        </button>
+    </md-card-footer>
+</md-card>

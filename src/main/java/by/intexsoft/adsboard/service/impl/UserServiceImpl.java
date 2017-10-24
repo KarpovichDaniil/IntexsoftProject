@@ -41,7 +41,7 @@ public class UserServiceImpl extends AbstractEntityServiceImpl<User> implements 
 	}
 
 	@Override
-	public User findByEnabled(boolean enabled) {
+	public List<User> findByEnabled(boolean enabled) {
 		 return userRepository.findByEnabled(enabled);
 	}
 

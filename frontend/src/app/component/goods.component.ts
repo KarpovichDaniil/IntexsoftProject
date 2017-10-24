@@ -18,6 +18,10 @@ export class GoodsComponent implements OnInit {
     }
 
     ngOnInit(): void {
+       this.findAll();
+    }
+
+    findAll() {
         this.goodsService.getAll()
             .subscribe((goods: Goods[]) => {
                     this.goods = goods;
@@ -25,33 +29,15 @@ export class GoodsComponent implements OnInit {
                 error => {
                     this.errorMessage = 'Sorry! No more goods available at the moment!';
                 });
-        /*this.getAll();*/
     }
 
-    /*   getAll(): void {
-          this.goodsService.getAllGoods()
-              .then((goods: Goods[]) => this.goods = goods);
-      }
-  */
-    /*this.goodsService.findAll()
-        .subscribe((goods: Goods[]) => {
-                this.goods = goods;
-            },
-            error => {
-                this.errorMessage = 'Sorry! No more goods available at the moment!';
-            });
-    this.pageNumber += PAGE_STEP;*/
-
-
-    /*findAll(): {
-    return new Promise((resolve, reject) => {
-        this.http.get(api/goods)
-            .subscribe(resp => resolve(resp.json())
-                , error => alert(error.message));
-    });}
-
-    /*this.goodsService.findAll()
-        .subscribe((goods: Goods[]) => this.goods = goods),
-        (error => alert(error.message));
-}*/
+    getByCategory(id: number): void {
+        this.goodsService.findByCategory(id)
+            .subscribe((goods: Goods[]) => {
+                    this.goods = goods;
+                },
+                error => {
+                    this.errorMessage = 'Error with category change!';
+                });
+    }
 }

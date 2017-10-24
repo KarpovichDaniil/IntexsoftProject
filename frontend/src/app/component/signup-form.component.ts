@@ -1,7 +1,7 @@
 import {Component, OnInit, Inject} from "@angular/core";
 import {Router} from "@angular/router";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
-import User from "../model/user";
+import {User} from "../model/user";
 import {IAuthenticationService} from "../service/iauthentication.service";
 
 /**
@@ -39,7 +39,6 @@ export class SignupFormComponent implements OnInit {
     register(): void {
         this.submitted = true;
         this.errorMessage = null;
-
         let user: User = this.newUser;
         this.newUser.enabled = false;
         this.authenticationService.register(user)

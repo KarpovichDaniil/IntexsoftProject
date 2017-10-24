@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import by.intexsoft.adsboard.model.AbstractEntity;
 import by.intexsoft.adsboard.service.AbstractEntityService;
 
-public class AbstractEntityServiceImpl<T extends AbstractEntity> implements AbstractEntityService<T> {
+public abstract class AbstractEntityServiceImpl<T extends AbstractEntity> implements AbstractEntityService<T> {
 
 	private final JpaRepository<T, Long> repository;
 	
@@ -33,12 +33,12 @@ public class AbstractEntityServiceImpl<T extends AbstractEntity> implements Abst
 	}
 
 	@Override
-	public T findOne(Long id) {
+	public T findOne(long id) {
 		return repository.findOne(id);
 	}
 
 	@Override
-	public void deleteById(Long id) {
+	public void deleteById(long id) {
 		repository.delete(id);
 	}
 }

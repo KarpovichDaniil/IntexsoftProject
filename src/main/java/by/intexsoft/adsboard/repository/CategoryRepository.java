@@ -9,5 +9,5 @@ import by.intexsoft.adsboard.model.Category;
  */
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long>{
-
+	Category findById(long categoryId);
 }

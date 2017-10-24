@@ -1,11 +1,11 @@
 import {Injectable} from "@angular/core";
 import {Headers, Http, RequestOptions, Response} from "@angular/http";
-import User from "../../model/user";
+import {User} from "../../model/user";
 import {IUsersService} from "../iuser.service";
 import {Observable} from "rxjs";
 import "rxjs/add/operator/toPromise";
 
-const ALL_USERS_PATH = 'api/users/all';
+const ALL_USERS_PATH = 'api/users';
 const USER_PATH = 'api/user/';
 const USER_PATH_FOR_ADMIN = 'api/user/admin';
 const CURRENT_USER_PATH = 'api/user/current';
@@ -29,7 +29,7 @@ export class UsersService implements IUsersService {
         );
     }
 
-    getAll(): Observable<User[]> {
+    findAll(): Observable<User[]> {
         return this.http.get(ALL_USERS_PATH, this.getAuthRequestOptions())
             .map((response: Response) => {
                return response.json();
@@ -38,7 +38,7 @@ export class UsersService implements IUsersService {
     }
 
     getOne(id: number): Observable<User> {
-        const url = `${USER_PATH}/${id}`;
+        const url = `${USER_PATH}${id}`;
         return this.http.get(url, this.getAuthRequestOptions())
             .map((response: Response) => {
                 response.json();
@@ -70,10 +70,10 @@ export class UsersService implements IUsersService {
             .catch((error: any) => Observable.throw(error));
     }
 
-    getAllEnabled(enabled: boolean): Observable<User[]> {
+    findAllEnabled(enabled: boolean): Observable<User[]> {
         return this.http.get(ALL_USERS_PATH + '/' + enabled, this.getAuthRequestOptions())
             .map((response: Response) => {
-                return response.json().content;
+                return response.json();
             })
             .catch((error: any) => Observable.throw(error));
     }

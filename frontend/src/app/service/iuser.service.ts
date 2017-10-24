@@ -1,10 +1,10 @@
-import User from "../model/user";
+import {User} from "../model/user";
 import {Observable} from "rxjs";
 
 
 export interface IUsersService {
 
-    getAll(): Observable<User[]>;
+    findAll(): Observable<User[]>;
 
     getOne(id: number): Observable<User>;
 
@@ -14,7 +14,7 @@ export interface IUsersService {
 
     obtainUser(user: User): Observable<User>;
 
-    getAllEnabled(enabled: boolean): Observable<User[]>;
+    findAllEnabled(enabled: boolean): Observable<User[]>;
 
     deleteUser(id: number): Observable<boolean>;
 }

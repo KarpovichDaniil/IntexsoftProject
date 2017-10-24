@@ -1,5 +1,7 @@
 package by.intexsoft.adsboard.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 import by.intexsoft.adsboard.model.User;
 
@@ -12,5 +14,5 @@ public interface UserService extends AbstractEntityService<User>{
     @Transactional
     User obtainUser(String username);
     
-    User findByEnabled(boolean enabled);
+    List<User> findByEnabled(boolean enabled);
 }

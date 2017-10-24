@@ -1,10 +1,27 @@
 <h1>All goods</h1>
+<md-grid-list cols="1" rowHeight="5:1">
+    <md-grid-tile [colspan]="1" [rowspan]="1">
+        <button md-menu-item (click)='findAll()'>All goods</button>
+    </md-grid-tile>
+    <md-grid-tile [colspan]="1" [rowspan]="1">
+        <button md-menu-item (click)='getByCategory(1)'>Cars</button>
+    </md-grid-tile>
+    <md-grid-tile [colspan]="1" [rowspan]="1">
+        <button md-menu-item (click)='getByCategory(2)'>Real estate</button>
+    </md-grid-tile>
+    <md-grid-tile [colspan]="1" [rowspan]="1">
+        <button md-menu-item (click)='getByCategory(3)'>Clothes</button>
+    </md-grid-tile>
+    <md-grid-tile [colspan]="1" [rowspan]="1">
+        <button md-menu-item (click)='getByCategory(4)'>Tech</button>
+    </md-grid-tile>
+</md-grid-list>
+
 <md-card *ngFor="let singleGoods of goods">
     <md-grid-list cols="5" rowHeight="4:1">
         <md-grid-tile [colspan]="2" [rowspan]="4">
             <div class="img">
-                <img md-card-image src={{imagePath+singleGoods?.id+imageFormat}} alt="Image not found"
-                     onerror="this.onerror=null;this.src = 'https://redsclubstore.shopdesq.com/assets/shopdesq/imagenotfoundthumb.jpg';">
+                <img md-card-image src={{imagePath+singleGoods?.id+imageFormat}} alt="Image not found">
             </div>
         </md-grid-tile>
         <md-grid-tile [colspan]="3" [rowspan]="1">
@@ -14,7 +31,7 @@
             <md-card-subtitle class="max-size">{{singleGoods?.description}}</md-card-subtitle>
         </md-grid-tile>
         <md-grid-tile [colspan]="3" [rowspan]="1">
-            <md-card-content class="price-content">{{singleGoods?.price}}</md-card-content>
+            <md-card-content class="price-content">{{singleGoods?.price+' $'}}</md-card-content>
         </md-grid-tile>
     </md-grid-list>
 </md-card>

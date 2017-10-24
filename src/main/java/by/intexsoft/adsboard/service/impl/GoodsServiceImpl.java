@@ -1,5 +1,7 @@
 package by.intexsoft.adsboard.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -17,5 +19,11 @@ public class GoodsServiceImpl extends AbstractEntityServiceImpl<Goods> implement
 	public GoodsServiceImpl(JpaRepository<Goods, Long> jpaRepository, GoodsRepository goodsRepository) {
 		super(jpaRepository);
 		this.goodsRepository = goodsRepository;
+	}
+
+	@Override
+	public List<Goods> findByCategoryId(long categoryId) {
+		return goodsRepository.findByCategoryId(categoryId);
+
 	}
 }
